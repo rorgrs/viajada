@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView android:text = "@string/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/login"
+            android:textSize = "35sp" />
+        <TextView android:text = "@string/login_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_marginTop="20dp"
+            android:id = "@+id/login_title"
+            android:textColor="@color/primary"
+            android:textSize = "35sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/usuario"
+            android:hint = "@string/usuario_label"
+            android:focusable = "true"
+            android:textColorHighlight = "#0073FF"
+            android:textColorHint = "@color/lightgray"
+            android:textSize = "35sp"/>
+        <EditText
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/senha"
+            android:hint = "@string/senha_label"
+            android:inputType="textPassword"
+            android:focusable = "true"
+            android:textColorHighlight = "#0073FF"
+            android:textColorHint = "@color/lightgray"
+            android:textSize = "35sp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_button_label"
+            android:textSize = "35sp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/login_button"
+            android:backgroundTint="@color/secondary"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ReservaRestaurante</string>
+    <string name="login_title">Bem-Vindo</string>
+    <string name="login_subtitle">Reserva de Restaurante</string>
+    <string name="usuario_label">Nome de Usuário</string>
+    <string name="senha_label">Senha</string>
+    <string name="login_button_label">Login</string>
+    <string name="botao_reservar_label">Reservar</string>
+    <string name="mesa_1_label">1</string>
+    <string name="mesa_2_label">2</string>
+    <string name="mesa_3_label">3</string>
+    <string name="mesa_4_label">4</string>
+    <string name="mesa_5_label">5</string>
+    <string name="mesa_6_label">6</string>
+    <string name="mesa_7_label">7</string>
+    <string name="mesa_8_label">8</string>
+    <string name="mesa_9_label">9</string>
+    <string name="botao_liberar_mesa_label">Liberar Mesa</string>
+    <string name="numero_mesa_label">Número Mesa</string>
+    <string name="botao_salvar_operacao_label">Salvar Operação</string>
+    <string name="botao_reservar_todas_label">Reservar Todas</string>
+</resources>
