@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ReservaRestaurante</string>
+    <string name="app_name">Viajada</string>
     <string name="login_title">Bem-Vindo</string>
     <string name="login_subtitle">Reserva de Restaurante</string>
     <string name="usuario_label">Nome de Usuário</string>
@@ -19,4 +19,11 @@
     <string name="numero_mesa_label">Número Mesa</string>
     <string name="botao_salvar_operacao_label">Salvar Operação</string>
     <string name="botao_reservar_todas_label">Reservar Todas</string>
+    <string name="nome">NOME DE USUÁRIO</string>
+    <string name="senha">SENHA</string>
+    <string name="cadastro">CADASTRO</string>
+    <string name="login">LOGIN</string>
+    <string name="cadastrar">CADASTRAR</string>
+    <string name="confirmar_senha">CONFIRMAR SENHA</string>
+    <string name="voltar">VOLTAR</string>
 </resources>

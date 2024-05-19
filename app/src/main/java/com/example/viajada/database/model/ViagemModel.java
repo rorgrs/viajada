@@ -8,6 +8,7 @@ public class ViagemModel {
 
     public static String
             COLUNA_ID = "_id",
+            COLUNA_USUARIO_ID = "usuario_id",
             COLUNA_PRINCIPAL_ORIGEM = "principal_origem",
             COLUNA_PRINCIPAL_DESTINO = "principal_destino",
             COLUNA_PRINCIPAL_DURACAO_DIAS = "duracao_dias",
@@ -47,6 +48,7 @@ public class ViagemModel {
             "DROP TABLE IF EXISTS " + TABELA_NOME;
 
     private long id;
+    private long usuario_id;
     private String principalOrigem;
     private String principalDestino;
     private int principalDuracaoDias;
@@ -69,6 +71,14 @@ public class ViagemModel {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUsuarioId() {
+        return usuario_id;
+    }
+
+    public void setUsuarioId(long usuarioId) {
+        this.usuario_id = id;
     }
 
     public String getPrincipalOrigem() {

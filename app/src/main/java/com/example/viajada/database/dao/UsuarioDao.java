@@ -15,7 +15,6 @@ public class UsuarioDao extends BaseDao {
 
     private String[] colunas = {
             UsuarioModel.COLUNA_ID,
-            UsuarioModel.COLUNA_LOGIN,
             UsuarioModel.COLUNA_NOME,
             UsuarioModel.COLUNA_SENHA
     };
@@ -33,7 +32,6 @@ public class UsuarioDao extends BaseDao {
 
             //colunas obrigatorias
             ContentValues values = new ContentValues();
-            values.put(UsuarioModel.COLUNA_LOGIN, model.getLogin());
             values.put(UsuarioModel.COLUNA_NOME, model.getNome());
             values.put(UsuarioModel.COLUNA_SENHA, model.getSenha());
 
@@ -60,16 +58,75 @@ public class UsuarioDao extends BaseDao {
                         null
                 );
 
-        c.moveToFirst();
+        boolean existe = c.moveToFirst();
+
+        if(!existe) return null;
 
         UsuarioModel model = new UsuarioModel();
 
         model.setId(c.getInt(0));
 
-        model.setLogin(c.getString(1));
-        model.setNome(c.getString(2));
-        model.setSenha(c.getString(3));
+        model.setNome(c.getString(1));
+        model.setSenha(c.getString(2));
 
+        c.close();
+
+        Close();
+
+        return model;
+    }
+
+    public boolean ExistePorNome(String nome) {
+        Open();
+
+        // select * from tb_produtos;
+        Cursor c = db.query
+                (
+                        UsuarioModel.TABELA_NOME,
+                        colunas,
+                        UsuarioModel.COLUNA_NOME + " = ?",
+                        new String[]{String.valueOf(nome)},
+                        null,
+                        null,
+                        null
+                );
+
+        boolean existe = c.moveToFirst();
+
+        c.close();
+
+        Close();
+
+        return existe;
+    }
+
+    public UsuarioModel ConsultarPorNomeSenha(String nome, String senha) {
+        Open();
+
+        // select * from tb_produtos;
+        Cursor c = db.query
+                (
+                        UsuarioModel.TABELA_NOME,
+                        colunas,
+                        UsuarioModel.COLUNA_NOME + " = ? and " + UsuarioModel.COLUNA_SENHA + " = ?",
+                        new String[]{String.valueOf(nome), String.valueOf(senha)},
+                        null,
+                        null,
+                        null
+                );
+
+        boolean existe = c.moveToFirst();
+
+        if(!existe) return null;
+
+        UsuarioModel model = new UsuarioModel();
+
+        model.setId(c.getInt(0));
+
+        model.setNome(c.getString(1));
+        model.setSenha(c.getString(2));
+
+        c.close();
         Close();
 
         return model;

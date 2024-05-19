@@ -14,6 +14,7 @@ public class ViagemDao extends BaseDao {
 
     private String[] colunas = {
             ViagemModel.COLUNA_ID,
+            ViagemModel.COLUNA_USUARIO_ID,
             ViagemModel.COLUNA_PRINCIPAL_ORIGEM,
             ViagemModel.COLUNA_PRINCIPAL_DESTINO,
             ViagemModel.COLUNA_PRINCIPAL_DURACAO_DIAS,
@@ -46,6 +47,7 @@ public class ViagemDao extends BaseDao {
 
             //colunas obrigatorias
             ContentValues values = new ContentValues();
+            values.put(ViagemModel.COLUNA_USUARIO_ID, model.getUsuarioId());
             values.put(ViagemModel.COLUNA_PRINCIPAL_ORIGEM, model.getPrincipalOrigem());
             values.put(ViagemModel.COLUNA_PRINCIPAL_DESTINO, model.getPrincipalDestino());
             values.put(ViagemModel.COLUNA_PRINCIPAL_DURACAO_DIAS, model.getPrincipalDuracaoDias());
@@ -128,25 +130,26 @@ public class ViagemDao extends BaseDao {
             ViagemModel model = new ViagemModel();
 
             model.setId(c.getInt(0));
+            model.setUsuarioId(c.getInt(1));
 
-            model.setPrincipalOrigem(c.getString(1));
-            model.setPrincipalDestino(c.getString(2));
-            model.setPrincipalDuracaoDias(c.getInt(3));
-            model.setPrincipalNumViajantes(c.getInt(4));
+            model.setPrincipalOrigem(c.getString(2));
+            model.setPrincipalDestino(c.getString(3));
+            model.setPrincipalDuracaoDias(c.getInt(4));
+            model.setPrincipalNumViajantes(c.getInt(5));
 
-            model.setCombustivelDistanciaTotalKm(c.getInt(5));
-            model.setCombustivelMediaKmLitro(c.getDouble(6));
-            model.setCombustivelCustoMedioLitro(c.getDouble(7));
-            model.setCombustivelNumVeiculos(c.getInt(8));
+            model.setCombustivelDistanciaTotalKm(c.getInt(6));
+            model.setCombustivelMediaKmLitro(c.getDouble(7));
+            model.setCombustivelCustoMedioLitro(c.getDouble(8));
+            model.setCombustivelNumVeiculos(c.getInt(9));
 
-            model.setTarifaAereaCustoPessoa(c.getDouble(9));
-            model.setTarifaAereaCustoAluguelVeiculo(c.getDouble(10));
+            model.setTarifaAereaCustoPessoa(c.getDouble(10));
+            model.setTarifaAereaCustoAluguelVeiculo(c.getDouble(11));
 
-            model.setRefeicaoCustoMedio(c.getDouble(11));
-            model.setRefeicaoPorDia(c.getInt(12));
+            model.setRefeicaoCustoMedio(c.getDouble(12));
+            model.setRefeicaoPorDia(c.getInt(13));
 
-            model.setHospedagemCustoMedioNoite(c.getDouble(13));
-            model.setHospedagemTotalNoites(c.getInt(14));
+            model.setHospedagemCustoMedioNoite(c.getDouble(14));
+            model.setHospedagemTotalNoites(c.getInt(15));
 
             c.moveToNext();
         }
@@ -177,25 +180,26 @@ public class ViagemDao extends BaseDao {
         ViagemModel model = new ViagemModel();
 
         model.setId(c.getInt(0));
+        model.setUsuarioId(c.getInt(1));
 
-        model.setPrincipalOrigem(c.getString(1));
-        model.setPrincipalDestino(c.getString(2));
-        model.setPrincipalDuracaoDias(c.getInt(3));
-        model.setPrincipalNumViajantes(c.getInt(4));
+        model.setPrincipalOrigem(c.getString(2));
+        model.setPrincipalDestino(c.getString(3));
+        model.setPrincipalDuracaoDias(c.getInt(4));
+        model.setPrincipalNumViajantes(c.getInt(5));
 
-        model.setCombustivelDistanciaTotalKm(c.getInt(5));
-        model.setCombustivelMediaKmLitro(c.getDouble(6));
-        model.setCombustivelCustoMedioLitro(c.getDouble(7));
-        model.setCombustivelNumVeiculos(c.getInt(8));
+        model.setCombustivelDistanciaTotalKm(c.getInt(6));
+        model.setCombustivelMediaKmLitro(c.getDouble(7));
+        model.setCombustivelCustoMedioLitro(c.getDouble(8));
+        model.setCombustivelNumVeiculos(c.getInt(9));
 
-        model.setTarifaAereaCustoPessoa(c.getDouble(9));
-        model.setTarifaAereaCustoAluguelVeiculo(c.getDouble(10));
+        model.setTarifaAereaCustoPessoa(c.getDouble(10));
+        model.setTarifaAereaCustoAluguelVeiculo(c.getDouble(11));
 
-        model.setRefeicaoCustoMedio(c.getDouble(11));
-        model.setRefeicaoPorDia(c.getInt(12));
+        model.setRefeicaoCustoMedio(c.getDouble(12));
+        model.setRefeicaoPorDia(c.getInt(13));
 
-        model.setHospedagemCustoMedioNoite(c.getDouble(13));
-        model.setHospedagemTotalNoites(c.getInt(14));
+        model.setHospedagemCustoMedioNoite(c.getDouble(14));
+        model.setHospedagemTotalNoites(c.getInt(15));
 
         model.setCustosAdicionais(custosAdicionais);
 

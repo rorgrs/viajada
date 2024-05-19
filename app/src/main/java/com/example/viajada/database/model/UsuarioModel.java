@@ -8,7 +8,6 @@ public class UsuarioModel {
 
     public static String
             COLUNA_ID = "_id",
-            COLUNA_LOGIN = "login",
             COLUNA_NOME = "nome",
             COLUNA_SENHA = "senha";
 
@@ -16,7 +15,6 @@ public class UsuarioModel {
             "CREATE TABLE " + TABELA_NOME +
                     " ( "
                     + COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + COLUNA_LOGIN + " TEXT NOT NULL, "
                     + COLUNA_NOME + " TEXT, "
                     + COLUNA_SENHA + " TEXT NOT NULL "
                     + " );";
@@ -25,7 +23,6 @@ public class UsuarioModel {
             "DROP TABLE IF EXISTS " + TABELA_NOME;
 
     private long id;
-    private String login;
     private String nome;
     private String senha;
 
@@ -35,14 +32,6 @@ public class UsuarioModel {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getNome() {

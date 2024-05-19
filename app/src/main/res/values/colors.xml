@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="lightgray">#CACACA</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#007BFF</color>
-    <color name="primaryLight">#70B6FF</color>
-    <color name="secondary">#004A98</color>
-    <color name="tertiary">#002955</color>
-    <color name="red">#FF1E00</color>
+    <color name="roxo1">#D6CFFF</color>
+    <color name="roxo2">#745BFF</color>
+    <color name="roxo3">#453795</color>
+    <color name="rosa">#FF006F</color>
+    <color name="amarelo">#FFC200</color>
 </resources>
