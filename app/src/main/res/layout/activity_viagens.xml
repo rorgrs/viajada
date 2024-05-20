@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/begeclaro">
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/viagens"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="@color/cinzae" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/verde"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/verde"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/destination_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Paris"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/start_date_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data de Início: 01/06/2024"
+                    android:textSize="16sp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/end_date_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data de Fim: 10/06/2024"
+                    android:textSize="16sp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/price_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preço: R$ 4000"
+                    android:textSize="16sp"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/excluir"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/shape_botao"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/editar"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/shape_botao"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/verde">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_botao"
+            android:text="@string/sair"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/nova_viagem"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_botao"/>
+
+    </LinearLayout>
+
+</LinearLayout>

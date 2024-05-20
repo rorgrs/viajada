@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.viajada.database.model.UsuarioModel;
 import com.example.viajada.database.model.ViagemCustoAdicionalModel;
 import com.example.viajada.database.model.ViagemModel;
 
@@ -19,6 +20,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(UsuarioModel.CREATE_TABLE);
         db.execSQL(ViagemModel.CREATE_TABLE);
         db.execSQL(ViagemCustoAdicionalModel.CREATE_TABLE);
     }

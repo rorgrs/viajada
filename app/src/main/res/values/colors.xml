@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="lightgray">#CACACA</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="roxo1">#D6CFFF</color>
-    <color name="roxo2">#745BFF</color>
-    <color name="roxo3">#453795</color>
-    <color name="rosa">#FF006F</color>
-    <color name="amarelo">#FFC200</color>
+    <color name="azul">#1693a5</color>
+    <color name="vermelho">#E30F30</color>
+    <color name="begecinza">#d8d8c0</color>
+    <color name="begeclaro">#f0f0d8</color>
+    <color name="cinza">#8fa691</color>
+    <color name="verde">#26503C</color>
+    <color name="cinzae">#252927</color>
 </resources>

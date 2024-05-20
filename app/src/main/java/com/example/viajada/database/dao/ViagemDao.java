@@ -138,17 +138,17 @@ public class ViagemDao extends BaseDao {
             model.setPrincipalNumViajantes(c.getInt(5));
 
             model.setCombustivelDistanciaTotalKm(c.getInt(6));
-            model.setCombustivelMediaKmLitro(c.getDouble(7));
-            model.setCombustivelCustoMedioLitro(c.getDouble(8));
+            model.setCombustivelMediaKmLitro(c.getFloat(7));
+            model.setCombustivelCustoMedioLitro(c.getFloat(8));
             model.setCombustivelNumVeiculos(c.getInt(9));
 
-            model.setTarifaAereaCustoPessoa(c.getDouble(10));
-            model.setTarifaAereaCustoAluguelVeiculo(c.getDouble(11));
+            model.setTarifaAereaCustoPessoa(c.getFloat(10));
+            model.setTarifaAereaCustoAluguelVeiculo(c.getFloat(11));
 
-            model.setRefeicaoCustoMedio(c.getDouble(12));
+            model.setRefeicaoCustoMedio(c.getFloat(12));
             model.setRefeicaoPorDia(c.getInt(13));
 
-            model.setHospedagemCustoMedioNoite(c.getDouble(14));
+            model.setHospedagemCustoMedioNoite(c.getFloat(14));
             model.setHospedagemTotalNoites(c.getInt(15));
 
             c.moveToNext();
@@ -188,17 +188,17 @@ public class ViagemDao extends BaseDao {
         model.setPrincipalNumViajantes(c.getInt(5));
 
         model.setCombustivelDistanciaTotalKm(c.getInt(6));
-        model.setCombustivelMediaKmLitro(c.getDouble(7));
-        model.setCombustivelCustoMedioLitro(c.getDouble(8));
+        model.setCombustivelMediaKmLitro(c.getFloat(7));
+        model.setCombustivelCustoMedioLitro(c.getFloat(8));
         model.setCombustivelNumVeiculos(c.getInt(9));
 
-        model.setTarifaAereaCustoPessoa(c.getDouble(10));
-        model.setTarifaAereaCustoAluguelVeiculo(c.getDouble(11));
+        model.setTarifaAereaCustoPessoa(c.getFloat(10));
+        model.setTarifaAereaCustoAluguelVeiculo(c.getFloat(11));
 
-        model.setRefeicaoCustoMedio(c.getDouble(12));
+        model.setRefeicaoCustoMedio(c.getFloat(12));
         model.setRefeicaoPorDia(c.getInt(13));
 
-        model.setHospedagemCustoMedioNoite(c.getDouble(14));
+        model.setHospedagemCustoMedioNoite(c.getFloat(14));
         model.setHospedagemTotalNoites(c.getInt(15));
 
         model.setCustosAdicionais(custosAdicionais);

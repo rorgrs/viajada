@@ -2,7 +2,6 @@ package com.example.viajada;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,8 +34,8 @@ public class CadastrarActivity extends AppCompatActivity {
         inputNomeUsuario = findViewById(R.id.nome_usuario);
         inputSenha = findViewById(R.id.senha);
         inputConfirmarSenha = findViewById(R.id.confirmar_senha);
-        btnVoltar = findViewById(R.id.voltar);
-        btnCadastrar = findViewById(R.id.cadastrar);
+        btnVoltar = findViewById(R.id.voltar_btn);
+        btnCadastrar = findViewById(R.id.cadastrar_btn);
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,33 +48,37 @@ public class CadastrarActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String usr = inputNomeUsuario.getText().toString();
-                String pwd = inputSenha.getText().toString();
-                String conf = inputConfirmarSenha.getText().toString();
-
-                if(!pwd.equals(conf)){
-                    alertHelper.CriarAlerta("Erro", "Confirmação de senha incorreta");
-                    return;
-                }
-
-                if(usuarioDao.ExistePorNome(usr)){
-                    alertHelper.CriarAlerta("Erro", "Já existe um usuário cadastrado com esse nome");
-                    return;
-                }
-
-                UsuarioModel usuarioNovo = new UsuarioModel();
-                usuarioNovo.setNome(usr);
-                usuarioNovo.setSenha(pwd);
-
-                long id = usuarioDao.Inserir(usuarioNovo);
-
-                sharedHelper.SetLong(SharedHelper.UsuarioId, id);
-
-                Toast.makeText(CadastrarActivity.this, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(CadastrarActivity.this, MainActivity.class);
-                startActivity(intent);
+                Cadastrar();
             }
         });
+    }
+
+    private void Cadastrar() {
+        String usr = inputNomeUsuario.getText().toString();
+        String pwd = inputSenha.getText().toString();
+        String conf = inputConfirmarSenha.getText().toString();
+
+        if(!pwd.equals(conf)){
+            alertHelper.CriarAlerta("Erro", "Confirmação de senha incorreta");
+            return;
+        }
+
+        if(usuarioDao.ExistePorNome(usr)){
+            alertHelper.CriarAlerta("Erro", "Já existe um usuário cadastrado com esse nome");
+            return;
+        }
+
+        UsuarioModel usuarioNovo = new UsuarioModel();
+        usuarioNovo.setNome(usr);
+        usuarioNovo.setSenha(pwd);
+
+        long id = usuarioDao.Inserir(usuarioNovo);
+
+        sharedHelper.SetLong(SharedHelper.UsuarioId, id);
+
+        Toast.makeText(CadastrarActivity.this, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(CadastrarActivity.this, ViagensActivity.class);
+        startActivity(intent);
     }
 }

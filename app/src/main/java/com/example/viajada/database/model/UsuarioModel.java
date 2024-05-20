@@ -1,7 +1,5 @@
 package com.example.viajada.database.model;
 
-import java.util.List;
-
 public class UsuarioModel {
 
     public static String TABELA_NOME = "tb_usuario";

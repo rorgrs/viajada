@@ -22,7 +22,8 @@ public class ViagemModel {
             COLUNA_REFEICAO_CUSTO_MEDIO = "refeicao_custo_medio",
             COLUNA_REFEICAO_POR_DIA = "refeicao_por_dia",
             COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE = "hospedagem_custo_medio_noite",
-            COLUNA_HOSPEDAGEM_TOTAL_NOITES = "hospedagem_total_noites";
+            COLUNA_HOSPEDAGEM_TOTAL_NOITES = "hospedagem_total_noites",
+            COLUNA_HOSPEDAGEM_TOTAL_QUARTOS = "hospedagem_total_quartos";
 
     public static String CREATE_TABLE =
             "CREATE TABLE " + TABELA_NOME +
@@ -41,7 +42,8 @@ public class ViagemModel {
                     + COLUNA_REFEICAO_CUSTO_MEDIO + " REAL NOT NULL, "
                     + COLUNA_REFEICAO_POR_DIA + " INTEGER NOT NULL, "
                     + COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE + " REAL, "
-                    + COLUNA_HOSPEDAGEM_TOTAL_NOITES + " INTEGER "
+                    + COLUNA_HOSPEDAGEM_TOTAL_NOITES + " INTEGER, "
+                    + COLUNA_HOSPEDAGEM_TOTAL_QUARTOS + " INTEGER "
                     + " );";
 
     public static String DROP_TABLE =
@@ -54,15 +56,16 @@ public class ViagemModel {
     private int principalDuracaoDias;
     private int principalNumViajantes;
     private int combustivelDistanciaTotalKm;
-    private double combustivelMediaKmLitro;
-    private double combustivelCustoMedioLitro;
+    private float combustivelMediaKmLitro;
+    private float combustivelCustoMedioLitro;
     private int combustivelNumVeiculos;
-    private Double tarifaAereaCustoPessoa;
-    private Double tarifaAereaCustoAluguelVeiculo;
-    private double refeicaoCustoMedio;
+    private Float tarifaAereaCustoPessoa;
+    private Float tarifaAereaCustoAluguelVeiculo;
+    private float refeicaoCustoMedio;
     private int refeicaoPorDia;
-    private Double hospedagemCustoMedioNoite;
+    private Float hospedagemCustoMedioNoite;
     private Integer hospedagemTotalNoites;
+    private Integer hospedagemTotalQuartos;
     private List<ViagemCustoAdicionalModel> custosAdicionais;
 
     public long getId() {
@@ -121,19 +124,19 @@ public class ViagemModel {
         this.combustivelDistanciaTotalKm = combustivelDistanciaTotalKm;
     }
 
-    public double getCombustivelMediaKmLitro() {
+    public float getCombustivelMediaKmLitro() {
         return combustivelMediaKmLitro;
     }
 
-    public void setCombustivelMediaKmLitro(double combustivelMediaKmLitro) {
+    public void setCombustivelMediaKmLitro(float combustivelMediaKmLitro) {
         this.combustivelMediaKmLitro = combustivelMediaKmLitro;
     }
 
-    public double getCombustivelCustoMedioLitro() {
+    public float getCombustivelCustoMedioLitro() {
         return combustivelCustoMedioLitro;
     }
 
-    public void setCombustivelCustoMedioLitro(double combustivelCustoMedioLitro) {
+    public void setCombustivelCustoMedioLitro(float combustivelCustoMedioLitro) {
         this.combustivelCustoMedioLitro = combustivelCustoMedioLitro;
     }
 
@@ -145,27 +148,27 @@ public class ViagemModel {
         this.combustivelNumVeiculos = combustivelNumVeiculos;
     }
 
-    public Double getTarifaAereaCustoPessoa() {
+    public Float getTarifaAereaCustoPessoa() {
         return tarifaAereaCustoPessoa;
     }
 
-    public void setTarifaAereaCustoPessoa(Double tarifaAereaCustoPessoa) {
+    public void setTarifaAereaCustoPessoa(Float tarifaAereaCustoPessoa) {
         this.tarifaAereaCustoPessoa = tarifaAereaCustoPessoa;
     }
 
-    public Double getTarifaAereaCustoAluguelVeiculo() {
+    public Float getTarifaAereaCustoAluguelVeiculo() {
         return tarifaAereaCustoAluguelVeiculo;
     }
 
-    public void setTarifaAereaCustoAluguelVeiculo(Double tarifaAereaCustoAluguelVeiculo) {
+    public void setTarifaAereaCustoAluguelVeiculo(Float tarifaAereaCustoAluguelVeiculo) {
         this.tarifaAereaCustoAluguelVeiculo = tarifaAereaCustoAluguelVeiculo;
     }
 
-    public double getRefeicaoCustoMedio() {
+    public float getRefeicaoCustoMedio() {
         return refeicaoCustoMedio;
     }
 
-    public void setRefeicaoCustoMedio(double refeicaoCustoMedio) {
+    public void setRefeicaoCustoMedio(float refeicaoCustoMedio) {
         this.refeicaoCustoMedio = refeicaoCustoMedio;
     }
 
@@ -177,11 +180,11 @@ public class ViagemModel {
         this.refeicaoPorDia = refeicaoPorDia;
     }
 
-    public Double getHospedagemCustoMedioNoite() {
+    public Float getHospedagemCustoMedioNoite() {
         return hospedagemCustoMedioNoite;
     }
 
-    public void setHospedagemCustoMedioNoite(Double hospedagemCustoMedioNoite) {
+    public void setHospedagemCustoMedioNoite(Float hospedagemCustoMedioNoite) {
         this.hospedagemCustoMedioNoite = hospedagemCustoMedioNoite;
     }
 
@@ -192,6 +195,15 @@ public class ViagemModel {
     public void setHospedagemTotalNoites(Integer hospedagemTotalNoites) {
         this.hospedagemTotalNoites = hospedagemTotalNoites;
     }
+
+    public Integer getHospedagemTotalQuartos() {
+        return hospedagemTotalQuartos;
+    }
+
+    public void setHospedagemTotalQuartos(Integer hospedagemTotalQuartos) {
+        this.hospedagemTotalQuartos = hospedagemTotalQuartos;
+    }
+
 
     public List<ViagemCustoAdicionalModel> getCustosAdicionais() {
         return custosAdicionais;

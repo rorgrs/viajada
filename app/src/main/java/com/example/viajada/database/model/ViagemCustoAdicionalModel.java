@@ -25,7 +25,7 @@ public class ViagemCustoAdicionalModel {
     private long id;
     private int viagemId;
     private String descricao;
-    private double custo;
+    private float custo;
 
     public long getId() {
         return id;
@@ -51,11 +51,11 @@ public class ViagemCustoAdicionalModel {
         this.descricao = descricao;
     }
 
-    public double getCusto() {
+    public float getCusto() {
         return custo;
     }
 
-    public void setCusto(double custo) {
+    public void setCusto(float custo) {
         this.custo = custo;
     }
 }

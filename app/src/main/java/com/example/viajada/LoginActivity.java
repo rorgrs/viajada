@@ -2,7 +2,6 @@ package com.example.viajada;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -18,7 +17,7 @@ import com.example.viajada.helper.SharedHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button btnLogin, btnCadastrar;
+    private Button btnLogin, btnCadastro;
     private EditText inputNomeUsuario, inputSenha;
     private UsuarioDao usuarioDao;
     private AlertHelper alertHelper;
@@ -36,42 +35,43 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedHelper.Clear();
 
-        btnLogin = findViewById(R.id.login);
-        btnCadastrar = findViewById(R.id.cadastro);
+        btnLogin = findViewById(R.id.login_btn);
+        btnCadastro = findViewById(R.id.cadastro_btn);
         inputNomeUsuario = findViewById(R.id.nome_usuario);
         inputSenha = findViewById(R.id.senha);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String usr = inputNomeUsuario.getText().toString();
-                String pwd = inputSenha.getText().toString();
-
-                UsuarioModel usuario = usuarioDao.ConsultarPorNomeSenha(usr, pwd);
-
-                if(usuario == null){
-                    alertHelper.CriarAlerta("Usuário não encontrado", "Revise seus dados de login e tente novamente");
-                    return;
-                }
-
-                sharedHelper.SetLong(SharedHelper.UsuarioId, usuario.getId());
-
-                Toast.makeText(LoginActivity.this, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+                Login();
             }
         });
 
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+        btnCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, CadastrarActivity.class);
                 startActivity(intent);
             }
         });
+    }
 
+    private void Login() {
+        String usr = inputNomeUsuario.getText().toString();
+        String pwd = inputSenha.getText().toString();
 
+        UsuarioModel usuario = usuarioDao.ConsultarPorNomeSenha(usr, pwd);
 
+        if(usuario == null){
+            alertHelper.CriarAlerta("Usuário não encontrado", "Revise seus dados de login e tente novamente");
+            return;
+        }
+
+        sharedHelper.SetLong(SharedHelper.UsuarioId, usuario.getId());
+
+        Toast.makeText(LoginActivity.this, "Login efetuado com sucesso", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(LoginActivity.this, ViagensActivity.class);
+        startActivity(intent);
     }
 }

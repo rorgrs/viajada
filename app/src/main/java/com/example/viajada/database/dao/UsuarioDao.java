@@ -6,10 +6,6 @@ import android.database.Cursor;
 
 import com.example.viajada.database.DBOpenHelper;
 import com.example.viajada.database.model.UsuarioModel;
-import com.example.viajada.database.model.ViagemCustoAdicionalModel;
-import com.example.viajada.database.model.ViagemModel;
-
-import java.util.ArrayList;
 
 public class UsuarioDao extends BaseDao {
 

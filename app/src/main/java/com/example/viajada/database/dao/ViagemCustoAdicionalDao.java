@@ -94,7 +94,7 @@ public class ViagemCustoAdicionalDao extends BaseDao {
 
             model.setViagemId(c.getInt(1));
             model.setDescricao(c.getString(2));
-            model.setCusto(c.getDouble(3));
+            model.setCusto(c.getFloat(3));
 
             c.moveToNext();
         }

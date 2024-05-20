@@ -26,7 +26,14 @@ public class SharedHelper {
     public static final String ViagemRefeicaoNumPorDia = "viagem_" + ViagemModel.COLUNA_REFEICAO_POR_DIA;
     public static final String ViagemHospedagemCustoNoite = "viagem_" + ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE;
     public static final String ViagemHospedagemNumNoites = "viagem_" + ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES;
-    public static final String ViagemValorTotal = "viagem_valor_total";
+    public static final String ViagemHospedagemNumQuartos = "viagem_" + ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES;
+    public static final String ViagemUtilizaPassagemAerea = "viagem_utiliza_passagem_aerea";
+    public static final String ViagemUtilizaHospedagem = "viagem_utiliza_hospedagem";
+    public static final String ViagemValorTotalCombustivel = "viagem_valor_total_combustivel";
+    public static final String ViagemValorTotalTarifaAerea = "viagem_valor_total_tarifa_aerea";
+    public static final String ViagemValorTotalRefeicao = "viagem_valor_total_refeicao";
+    public static final String ViagemValorTotalHospedagem = "viagem_valor_total_hospedagem";
+    public static final String ViagemValorTotalGastosAdicionais = "viagem_valor_total_gastos_adicionais";
 
     public SharedHelper(Context context){
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -44,12 +51,13 @@ public class SharedHelper {
     public long GetLong(String campo){
         return this.prefs.getLong(campo, 0);
     }
+    public float GetFloat(String campo){
+        return this.prefs.getFloat(campo, 0);
+    }
 
     public boolean GetBoolean(String campo){
         return this.prefs.getBoolean(campo, false);
     }
-
-    
 
     public void SetString(String campo, String valor){
         this.editor.putString(campo, null);
@@ -66,9 +74,21 @@ public class SharedHelper {
         this.editor.apply();
     }
 
+    public void SetFloat(String campo, float valor){
+        this.editor.putFloat(campo, valor);
+        this.editor.apply();
+    }
+
     public void SetBoolean(String campo, boolean valor){
         this.editor.putBoolean(campo, valor);
         this.editor.apply();
+    }
+
+    public void ClearViagem(){
+        int usuarioId = this.prefs.getInt(UsuarioId, 0);
+        this.editor.clear();
+        SetInt(UsuarioId, usuarioId);
+        this.editor.commit();
     }
 
     public void Clear(){
