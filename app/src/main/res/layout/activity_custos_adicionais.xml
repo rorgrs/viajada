@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/begeclaro"
     android:orientation="vertical"
-    tools:context=".GastosAdicionaisActivity">
+    tools:context=".CustosAdicionaisActivity">
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/gastosAdicionais"
+            android:text="@string/custosAdicionais"
             android:textAlignment="center"
             android:textColor="@color/cinzae"
             android:textSize="40sp"
@@ -92,7 +92,7 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/add_gastoAdicional"
+            android:id="@+id/add_custoAdicional_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -141,7 +141,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/cancelar_btn"
+            android:id="@+id/voltar_btn"
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:layout_marginHorizontal="10dp"

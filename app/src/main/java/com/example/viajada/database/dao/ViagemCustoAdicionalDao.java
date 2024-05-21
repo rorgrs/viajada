@@ -85,7 +85,9 @@ public class ViagemCustoAdicionalDao extends BaseDao {
                         null
                 );
 
-        c.moveToFirst();
+        boolean existe = c.moveToFirst();
+
+        if(!existe) return lista;
 
         while (!c.isAfterLast()) {
             ViagemCustoAdicionalModel model = new ViagemCustoAdicionalModel();
@@ -96,10 +98,15 @@ public class ViagemCustoAdicionalDao extends BaseDao {
             model.setDescricao(c.getString(2));
             model.setCusto(c.getFloat(3));
 
+            lista.add(model);
+
             c.moveToNext();
         }
 
+        c.close();
+
         Close();
+
         return lista;
     }
 }

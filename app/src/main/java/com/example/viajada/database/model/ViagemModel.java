@@ -68,6 +68,39 @@ public class ViagemModel {
     private Integer hospedagemTotalQuartos;
     private List<ViagemCustoAdicionalModel> custosAdicionais;
 
+    public float getCustoTotal() {
+        return getCustoCombustivel() + getCustoHospedagem() + getCustoGastosAdicionais() + getCustoTarifaAerea() + getCustoRefeicoes();
+    }
+
+    public float getCustoCombustivel() {
+        return (((float) combustivelDistanciaTotalKm / combustivelMediaKmLitro) * combustivelCustoMedioLitro) / combustivelNumVeiculos;
+    }
+
+    public float getCustoHospedagem() {
+        return hospedagemCustoMedioNoite * hospedagemTotalQuartos * hospedagemTotalNoites;
+    }
+
+    public float getCustoTarifaAerea() {
+        if (tarifaAereaCustoPessoa == null || tarifaAereaCustoAluguelVeiculo == null) return 0;
+        return (principalNumViajantes * tarifaAereaCustoPessoa) + tarifaAereaCustoAluguelVeiculo;
+    }
+
+    public float getCustoRefeicoes() {
+        return principalNumViajantes * refeicaoPorDia * refeicaoCustoMedio * principalDuracaoDias;
+    }
+
+    public float getCustoGastosAdicionais() {
+        if (custosAdicionais == null || custosAdicionais.isEmpty()) return 0;
+
+        float soma = 0;
+
+        for (ViagemCustoAdicionalModel custo : custosAdicionais) {
+            soma += custo.getCusto();
+        }
+
+        return soma;
+    }
+
     public long getId() {
         return id;
     }

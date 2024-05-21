@@ -72,7 +72,7 @@ public class ViagemDao extends BaseDao {
             }
 
             //se tem custos adicionais
-            if(!model.getCustosAdicionais().isEmpty()){
+            if (!model.getCustosAdicionais().isEmpty()) {
                 custoAdicionalDao.Inserir(model.getCustosAdicionais(), model.getId());
             }
 
@@ -106,7 +106,7 @@ public class ViagemDao extends BaseDao {
         return rowId;
     }
 
-    public ArrayList<ViagemModel> ListarTodas() {
+    public ArrayList<ViagemModel> ListarTodas(long usuarioId) {
 
         Open();
 
@@ -117,14 +117,16 @@ public class ViagemDao extends BaseDao {
                 (
                         ViagemModel.TABELA_NOME,
                         colunas,
-                        null,
-                        null,
+                        ViagemModel.COLUNA_USUARIO_ID + " = ?",
+                        new String[]{String.valueOf(usuarioId)},
                         null,
                         null,
                         null
                 );
 
-        c.moveToFirst();
+        boolean existe = c.moveToFirst();
+
+        if(!existe) return lista;
 
         while (!c.isAfterLast()) {
             ViagemModel model = new ViagemModel();
@@ -151,16 +153,25 @@ public class ViagemDao extends BaseDao {
             model.setHospedagemCustoMedioNoite(c.getFloat(14));
             model.setHospedagemTotalNoites(c.getInt(15));
 
+            lista.add(model);
+
             c.moveToNext();
         }
 
+        c.close();
+
+        for (ViagemModel viagem : lista){
+            ArrayList<ViagemCustoAdicionalModel> custosAdicionais = custoAdicionalDao.ConsultarPorViagemId(viagem.getId());
+            if(custosAdicionais == null || custosAdicionais.isEmpty()) continue;
+            viagem.setCustosAdicionais(custosAdicionais);
+        }
+
         Close();
+
         return lista;
     }
 
     public ViagemModel ConsultarPorId(long id) {
-        ArrayList<ViagemCustoAdicionalModel> custosAdicionais = custoAdicionalDao.ConsultarPorViagemId(id);
-
         Open();
 
         // select * from tb_produtos;
@@ -175,7 +186,9 @@ public class ViagemDao extends BaseDao {
                         null
                 );
 
-        c.moveToFirst();
+        boolean existe = c.moveToFirst();
+
+        if(!existe) return null;
 
         ViagemModel model = new ViagemModel();
 
@@ -201,7 +214,9 @@ public class ViagemDao extends BaseDao {
         model.setHospedagemCustoMedioNoite(c.getFloat(14));
         model.setHospedagemTotalNoites(c.getInt(15));
 
-        model.setCustosAdicionais(custosAdicionais);
+        c.close();
+
+        model.setCustosAdicionais(custoAdicionalDao.ConsultarPorViagemId(id));
 
         Close();
 

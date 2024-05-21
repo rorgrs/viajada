@@ -17,10 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.viajada.helper.AlertHelper;
 import com.example.viajada.helper.SharedHelper;
 
-public class GastosAdicionaisActivity extends AppCompatActivity {
+public class CustosAdicionaisActivity extends AppCompatActivity {
     private SharedHelper sharedHelper;
     private AlertHelper alertHelper;
-    private Button btnX, btnVoltar, btnProximo;
+    private Button btnX, btnAddCustoAdicional, btnFinalizar, btnVoltar;
     private TextView viewValorTotal;
     private EditText inputCustoNoite, inputTotalNoites, inputTotalQuartos;
 
@@ -29,12 +29,13 @@ public class GastosAdicionaisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        sharedHelper = new SharedHelper(GastosAdicionaisActivity.this);
-        alertHelper = new AlertHelper(GastosAdicionaisActivity.this);
+        sharedHelper = new SharedHelper(CustosAdicionaisActivity.this);
+        alertHelper = new AlertHelper(CustosAdicionaisActivity.this);
 
         btnX = findViewById(R.id.x_btn);
         btnVoltar = findViewById(R.id.voltar_btn);
-        btnProximo = findViewById(R.id.proximo_btn);
+        btnFinalizar = findViewById(R.id.finalizar_btn);
+        btnAddCustoAdicional = findViewById(R.id.add_custoAdicional_btn);
         viewValorTotal = findViewById(R.id.total);
         inputCustoNoite = findViewById(R.id.custo_noite);
         inputTotalNoites = findViewById(R.id.total_noites);
@@ -57,11 +58,18 @@ public class GastosAdicionaisActivity extends AppCompatActivity {
             }
         });
 
-        btnProximo.setOnClickListener(new View.OnClickListener() {
+        btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SalvarInformacoes();
-                Proximo();
+                Finalizar();
+            }
+        });
+
+        btnAddCustoAdicional.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddCustoAdicional();
             }
         });
 
@@ -143,15 +151,17 @@ public class GastosAdicionaisActivity extends AppCompatActivity {
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalHospedagem, CalcularValorTotalTela());
     }
 
-    private void Proximo(){
-        boolean passagemAerea = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaPassagemAerea);
-        Intent intent = new Intent(GastosAdicionaisActivity.this, passagemAerea ? GastosAdicionaisActivity.class : GastosAdicionaisActivity.class);
-        startActivity(intent);
+    private void Finalizar(){
+
+    }
+
+    private void AddCustoAdicional(){
+
     }
 
     private void Cancelar() {
         sharedHelper.ClearViagem();
-        Intent intent = new Intent(GastosAdicionaisActivity.this, ViagensActivity.class);
+        Intent intent = new Intent(CustosAdicionaisActivity.this, ViagensActivity.class);
         startActivity(intent);
     }
     private void MostrarAvisoCancelamento() {
@@ -175,7 +185,7 @@ public class GastosAdicionaisActivity extends AppCompatActivity {
     }
 
     private void Voltar() {
-        Intent intent = new Intent(GastosAdicionaisActivity.this, PrincipalActivity.class);
+        Intent intent = new Intent(CustosAdicionaisActivity.this, PrincipalActivity.class);
         startActivity(intent);
     }
 }

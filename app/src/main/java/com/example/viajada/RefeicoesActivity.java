@@ -140,7 +140,7 @@ public class RefeicoesActivity extends AppCompatActivity {
 
     private void Proximo(){
         boolean hospedagem = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaHospedagem);
-        Intent intent = new Intent(RefeicoesActivity.this, hospedagem ? HospedagemActivity.class : GastosAdicionaisActivity.class);
+        Intent intent = new Intent(RefeicoesActivity.this, hospedagem ? HospedagemActivity.class : CustosAdicionaisActivity.class);
         startActivity(intent);
     }
 

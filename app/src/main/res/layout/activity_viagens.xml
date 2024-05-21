@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/begeclaro">
+    android:background="@color/begeclaro"
+    tools:context=".ViagensActivity">
 
     <TextView
         android:id="@+id/header_title"
@@ -22,6 +26,7 @@
         android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/listagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/verde"
@@ -110,7 +115,7 @@
         android:background="@color/verde">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/sair_btn"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -119,7 +124,7 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/nova_viagem_btn"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

@@ -12,7 +12,7 @@ import com.example.viajada.database.dao.ViagemDao;
 import com.example.viajada.helper.AlertHelper;
 import com.example.viajada.helper.SharedHelper;
 
-public class ViagensActivity extends AppCompatActivity {
+public class VisualizarViagemActivity extends AppCompatActivity {
     private SharedHelper sharedHelper;
     private AlertHelper alertHelper;
     private Button btnSair, btnNovaViagem;
@@ -24,12 +24,12 @@ public class ViagensActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-        sharedHelper = new SharedHelper(ViagensActivity.this);
-        alertHelper = new AlertHelper(ViagensActivity.this);
+        sharedHelper = new SharedHelper(VisualizarViagemActivity.this);
+        alertHelper = new AlertHelper(VisualizarViagemActivity.this);
         btnSair = findViewById(R.id.sair_btn);
         btnNovaViagem = findViewById(R.id.nova_viagem_btn);
         listagem = (LinearLayout) findViewById(R.id.listagem);
-        viagemDao = new ViagemDao(ViagensActivity.this);
+        viagemDao = new ViagemDao(VisualizarViagemActivity.this);
 
         ListarViagens();
 
@@ -38,7 +38,7 @@ public class ViagensActivity extends AppCompatActivity {
             public void onClick(View view) {
                 sharedHelper.Clear();
 
-                Intent intent = new Intent(ViagensActivity.this, LoginActivity.class);
+                Intent intent = new Intent(VisualizarViagemActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -48,7 +48,7 @@ public class ViagensActivity extends AppCompatActivity {
             public void onClick(View view) {
                 sharedHelper.ClearViagem();
 
-                Intent intent = new Intent(ViagensActivity.this, PrincipalActivity.class);
+                Intent intent = new Intent(VisualizarViagemActivity.this, PrincipalActivity.class);
                 startActivity(intent);
             }
         });
