@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
@@ -171,14 +172,14 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
 
         viagem.setCustosAdicionais(custosAdicionais);
 
-        if(idViagem != 0) viagem.setId(idViagem);
-
         try {
-            if(idViagem != 0) {
+            if (idViagem != 0) {
                 viagem.setId(idViagem);
                 viagemDao.Atualizar(viagem);
+                Toast.makeText(this, "Viagem editada com sucesso", Toast.LENGTH_SHORT).show();
             } else {
                 viagemDao.Inserir(viagem);
+                Toast.makeText(this, "Viagem cadastrada com sucesso", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             alertHelper.CriarAlerta("Erro", "Ocorreu um erro ao salvar a viagem.");
@@ -186,8 +187,6 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
         }
 
         sharedHelper.ClearViagem();
-
-        Toast.makeText(this, "Viagem cadastrada com sucesso", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(CustosAdicionaisActivity.this, ViagensActivity.class);
         startActivity(intent);
@@ -219,6 +218,7 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
         descricaoEditText.setGravity(Gravity.CENTER);
         descricaoEditText.setSingleLine(true);
         descricaoEditText.setHorizontallyScrolling(true);
+        descricaoEditText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(200) });
         if (custo != null) descricaoEditText.setText(custo.getDescricao());
         else descricaoEditText.setText(R.string.digite_aqui);
         descricaoEditText.setTextColor(Color.WHITE);
@@ -232,6 +232,7 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
         ));
         precoEditText.setHint(R.string.reais);
         precoEditText.setTextColor(Color.BLACK);
+        descricaoEditText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(8) });
         if (custo != null) precoEditText.setText(String.format("%.2f", custo.getCusto()));
 
         precoEditText.addTextChangedListener(new TextWatcher() {

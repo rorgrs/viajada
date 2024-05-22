@@ -64,13 +64,13 @@ public class ViagemDao extends BaseDao {
             values.put(ViagemModel.COLUNA_REFEICAO_POR_DIA, model.getRefeicaoPorDia());
 
             //se tem tarifa aerea
-            if (model.getTarifaAereaCustoPessoa() != null && model.getTarifaAereaCustoAluguelVeiculo() != null) {
+            if (model.possuiPassagemAerea()) {
                 values.put(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_PESSOA, model.getTarifaAereaCustoPessoa());
                 values.put(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_ALUGUEL_VEICULO, model.getTarifaAereaCustoAluguelVeiculo());
             }
 
             //se tem hospedagem
-            if (model.getHospedagemCustoMedioNoite() != null && model.getHospedagemTotalNoites() != null) {
+            if (model.possuiHospedagem()) {
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE, model.getHospedagemCustoMedioNoite());
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES, model.getHospedagemTotalNoites());
             }
@@ -112,7 +112,7 @@ public class ViagemDao extends BaseDao {
             values.put(ViagemModel.COLUNA_REFEICAO_POR_DIA, model.getRefeicaoPorDia());
 
             //se tem tarifa aerea
-            if (model.getTarifaAereaCustoPessoa() != null && model.getTarifaAereaCustoAluguelVeiculo() != null) {
+            if (model.possuiPassagemAerea()) {
                 values.put(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_PESSOA, model.getTarifaAereaCustoPessoa());
                 values.put(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_ALUGUEL_VEICULO, model.getTarifaAereaCustoAluguelVeiculo());
             } else {
@@ -121,12 +121,14 @@ public class ViagemDao extends BaseDao {
             }
 
             //se tem hospedagem
-            if (model.getHospedagemCustoMedioNoite() != null && model.getHospedagemTotalNoites() != null) {
+            if (model.possuiHospedagem()) {
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE, model.getHospedagemCustoMedioNoite());
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES, model.getHospedagemTotalNoites());
+                values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_QUARTOS, model.getHospedagemTotalQuartos());
             } else {
                 values.putNull(ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE);
                 values.putNull(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES);
+                values.putNull(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_QUARTOS);
             }
 
             db.update(ViagemModel.TABELA_NOME, values, ViagemModel.COLUNA_ID + " = ?", new String[]{String.valueOf(model.getId())});

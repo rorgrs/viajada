@@ -61,7 +61,7 @@ public class SharedHelper {
     }
 
     public void SetString(String campo, String valor){
-        this.editor.putString(campo, null);
+        this.editor.putString(campo, valor);
         this.editor.apply();
     }
 
@@ -86,9 +86,9 @@ public class SharedHelper {
     }
 
     public void ClearViagem(){
-        int usuarioId = this.prefs.getInt(UsuarioId, 0);
+        long usuarioId = this.prefs.getLong(UsuarioId, 0);
         this.editor.clear();
-        SetInt(UsuarioId, usuarioId);
+        SetLong(UsuarioId, usuarioId);
         this.editor.commit();
     }
 

@@ -62,7 +62,40 @@ public class HospedagemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SalvarInformacoes();
-                Proximo();
+            }
+        });
+
+        inputCustoNoite.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                VerificarValorTotal();
+            }
+        });
+
+        inputTotalNoites.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                VerificarValorTotal();
             }
         });
 
@@ -85,14 +118,14 @@ public class HospedagemActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void VerificarEdicaoViagem(){
         float custoNoite = sharedHelper.GetFloat(SharedHelper.ViagemHospedagemCustoNoite);
         int totalNoites = sharedHelper.GetInt(SharedHelper.ViagemHospedagemNumNoites);
         int totalQuartos = sharedHelper.GetInt(SharedHelper.ViagemHospedagemNumQuartos);
 
-        if(totalQuartos != 0) inputTotalQuartos.setText(totalQuartos);
-        if(totalNoites != 0) inputTotalNoites.setText(totalNoites);
+        if(totalQuartos != 0) inputTotalQuartos.setText(Integer.toString(totalQuartos));
+        if(totalNoites != 0) inputTotalNoites.setText(Integer.toString(totalNoites));
         if(custoNoite != 0) inputCustoNoite.setText(String.format("%.2f", custoNoite));
     }
 
@@ -143,6 +176,7 @@ public class HospedagemActivity extends AppCompatActivity {
         sharedHelper.SetInt(SharedHelper.ViagemHospedagemNumQuartos, totalQuartos);
         sharedHelper.SetInt(SharedHelper.ViagemHospedagemNumNoites, totalNoites);
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalHospedagem, CalcularValorTotalTela());
+        Proximo();
     }
 
     private void Proximo(){

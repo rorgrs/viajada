@@ -61,7 +61,6 @@ public class RefeicoesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SalvarInformacoes();
-                Proximo();
             }
         });
 
@@ -84,13 +83,13 @@ public class RefeicoesActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void VerificarEdicaoViagem(){
         float custoRefeicao = sharedHelper.GetFloat(SharedHelper.ViagemRefeicaoCustoMedio);
         int refeicoesDia = sharedHelper.GetInt(SharedHelper.ViagemRefeicaoNumPorDia);
 
         if(custoRefeicao != 0) inputCustoRefeicao.setText(String.format("%.2f", custoRefeicao));
-        if(refeicoesDia != 0) inputRefeicoesPorDia.setText(refeicoesDia);
+        if(refeicoesDia != 0) inputRefeicoesPorDia.setText(Integer.toString(refeicoesDia));
     }
 
     @SuppressLint("DefaultLocale")
@@ -134,9 +133,10 @@ public class RefeicoesActivity extends AppCompatActivity {
         int refeicoesPorDia = Integer.parseInt(refeicoesPorDiaStr);
         float custoRefeicao = Float.parseFloat(custoRefeicaoStr);
 
-        sharedHelper.SetFloat(SharedHelper.ViagemRefeicaoNumPorDia, refeicoesPorDia);
+        sharedHelper.SetInt(SharedHelper.ViagemRefeicaoNumPorDia, refeicoesPorDia);
         sharedHelper.SetFloat(SharedHelper.ViagemRefeicaoCustoMedio, custoRefeicao);
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalRefeicao, CalcularValorTotalTela());
+        Proximo();
     }
 
     private void Proximo(){

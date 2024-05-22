@@ -115,18 +115,22 @@ public class VisualizarViagemActivity extends AppCompatActivity {
         combustivelTotalVeiculos.setText("Total de veículos: " + viagem.getCombustivelNumVeiculos());
         combustivelValorTotal.setText("Valor total: " + String.format("%.2f", viagem.getCustoCombustivel()) + " reais");
 
-        tarifaAereaCustoPessoa.setText("Custo por pessoa: " + String.format("%.2f", viagem.getTarifaAereaCustoPessoa()) + " reais");
-        tarifaAereaAluguelVeiculo.setText("Aluguel do veículo: " + String.format("%.2f", viagem.getTarifaAereaCustoAluguelVeiculo()) + " reais");
-        tarifaAereaValorTotal.setText("Valor total: " + String.format("%.2f", viagem.getCustoTarifaAerea()) + " reais");
+        if (viagem.possuiPassagemAerea()) {
+            tarifaAereaCustoPessoa.setText("Custo por pessoa: " + String.format("%.2f", viagem.getTarifaAereaCustoPessoa()) + " reais");
+            tarifaAereaAluguelVeiculo.setText("Aluguel do veículo: " + String.format("%.2f", viagem.getTarifaAereaCustoAluguelVeiculo()) + " reais");
+            tarifaAereaValorTotal.setText("Valor total: " + String.format("%.2f", viagem.getCustoTarifaAerea()) + " reais");
+        }
 
         refeicaoCustoPessoa.setText("Custo por refeição: " + String.format("%.2f", viagem.getRefeicaoCustoMedio()) + " reais");
         refeicaoNumPorDia.setText("Número de refeições por dia: " + viagem.getRefeicaoPorDia());
         refeicaoValorTotal.setText("Valor total: " + String.format("%.2f", viagem.getCustoRefeicoes()) + " reais");
 
-        hospedagemCustoNoite.setText("Custo médio por noite: " + String.format("%.2f", viagem.getHospedagemCustoMedioNoite()) + " reais");
-        hospedagemNumNoites.setText("Total de noites: " + viagem.getHospedagemTotalNoites());
-        hospedagemValorTotal.setText("Total de quartos: " + viagem.getHospedagemTotalQuartos());
-        hospedagemNumQuartos.setText("Valor total: " + String.format("%.2f", viagem.getCustoHospedagem()) + " reais");
+        if (viagem.possuiHospedagem()) {
+            hospedagemCustoNoite.setText("Custo médio por noite: " + String.format("%.2f", viagem.getHospedagemCustoMedioNoite()) + " reais");
+            hospedagemNumNoites.setText("Total de noites: " + viagem.getHospedagemTotalNoites());
+            hospedagemValorTotal.setText("Total de quartos: " + viagem.getHospedagemTotalQuartos());
+            hospedagemNumQuartos.setText("Valor total: " + String.format("%.2f", viagem.getCustoHospedagem()) + " reais");
+        }
 
         if (viagem.getCustosAdicionais().isEmpty()) return;
 
@@ -209,16 +213,12 @@ public class VisualizarViagemActivity extends AppCompatActivity {
     }
 
     private void Editar() {
-
-        boolean utilizaPassagemAerea = viagem.getTarifaAereaCustoPessoa() != null && viagem.getTarifaAereaCustoAluguelVeiculo() != null;
-        boolean utilizaHospedagem = viagem.getHospedagemCustoMedioNoite() != null && viagem.getHospedagemTotalNoites() != null && viagem.getHospedagemTotalQuartos() != null;
-
         sharedHelper.SetString(SharedHelper.ViagemPrincipalOrigem, viagem.getPrincipalOrigem());
         sharedHelper.SetString(SharedHelper.ViagemPrincipalDestino, viagem.getPrincipalDestino());
         sharedHelper.SetInt(SharedHelper.ViagemPrincipalDuracaoDias, viagem.getPrincipalDuracaoDias());
         sharedHelper.SetInt(SharedHelper.ViagemPrincipalNumViajantes, viagem.getPrincipalNumViajantes());
-        sharedHelper.SetBoolean(SharedHelper.ViagemUtilizaPassagemAerea, utilizaPassagemAerea);
-        sharedHelper.SetBoolean(SharedHelper.ViagemUtilizaHospedagem, utilizaHospedagem);
+        sharedHelper.SetBoolean(SharedHelper.ViagemUtilizaPassagemAerea, viagem.possuiPassagemAerea());
+        sharedHelper.SetBoolean(SharedHelper.ViagemUtilizaHospedagem, viagem.possuiHospedagem());
 
         sharedHelper.SetInt(SharedHelper.ViagemCombustivelDistanciaKm, viagem.getCombustivelDistanciaTotalKm());
         sharedHelper.SetFloat(SharedHelper.ViagemCombustivelKmLitro, viagem.getCombustivelMediaKmLitro());
@@ -226,17 +226,17 @@ public class VisualizarViagemActivity extends AppCompatActivity {
         sharedHelper.SetInt(SharedHelper.ViagemCombustivelNumVeiculos, viagem.getCombustivelNumVeiculos());
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalCombustivel, viagem.getCustoCombustivel());
 
-        if(utilizaPassagemAerea){
+        if (viagem.possuiPassagemAerea()) {
             sharedHelper.SetFloat(SharedHelper.ViagemTarifaAereaCustoAluguelVeiculo, viagem.getTarifaAereaCustoAluguelVeiculo());
             sharedHelper.SetFloat(SharedHelper.ViagemTarifaAereaCustoPorPessoa, viagem.getTarifaAereaCustoPessoa());
             sharedHelper.SetFloat(SharedHelper.ViagemValorTotalTarifaAerea, viagem.getCustoTarifaAerea());
         }
 
-        sharedHelper.SetFloat(SharedHelper.ViagemRefeicaoNumPorDia, viagem.getRefeicaoPorDia());
+        sharedHelper.SetInt(SharedHelper.ViagemRefeicaoNumPorDia, viagem.getRefeicaoPorDia());
         sharedHelper.SetFloat(SharedHelper.ViagemRefeicaoCustoMedio, viagem.getRefeicaoCustoMedio());
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalRefeicao, viagem.getCustoRefeicoes());
 
-        if(utilizaHospedagem){
+        if (viagem.possuiHospedagem()) {
             sharedHelper.SetFloat(SharedHelper.ViagemHospedagemCustoNoite, viagem.getHospedagemCustoMedioNoite());
             sharedHelper.SetInt(SharedHelper.ViagemHospedagemNumQuartos, viagem.getHospedagemTotalQuartos());
             sharedHelper.SetInt(SharedHelper.ViagemHospedagemNumNoites, viagem.getHospedagemTotalNoites());

@@ -63,7 +63,57 @@ public class CombustivelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SalvarInformacoes();
-                Proximo();
+            }
+        });
+
+        inputMediaKmLitro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                VerificarValorTotal();
+            }
+        });
+
+        inputKmTotal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                VerificarValorTotal();
+            }
+        });
+
+        inputCustoLitro.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                VerificarValorTotal();
             }
         });
 
@@ -83,20 +133,19 @@ public class CombustivelActivity extends AppCompatActivity {
                 VerificarValorTotal();
             }
         });
-
     }
 
-    @SuppressLint("DefaultLocale")
-    private void VerificarEdicaoViagem(){
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
+    private void VerificarEdicaoViagem() {
         int kmTotal = sharedHelper.GetInt(SharedHelper.ViagemCombustivelDistanciaKm);
         float kmLitro = sharedHelper.GetFloat(SharedHelper.ViagemCombustivelKmLitro);
         float custoLitro = sharedHelper.GetFloat(SharedHelper.ViagemCombustivelCustoLitro);
         int numVeiculos = sharedHelper.GetInt(SharedHelper.ViagemCombustivelNumVeiculos);
 
-        if(kmTotal != 0) inputKmTotal.setText(kmTotal);
-        if(kmLitro != 0) inputMediaKmLitro.setText(String.format("%.2f", kmLitro));
-        if(custoLitro != 0) inputCustoLitro.setText(String.format("%.2f", custoLitro));
-        if(numVeiculos != 0) inputNumVeiculos.setText(numVeiculos);
+        if (kmTotal != 0) inputKmTotal.setText(Integer.toString(kmTotal));
+        if (kmLitro != 0) inputMediaKmLitro.setText(String.format("%.2f", kmLitro));
+        if (custoLitro != 0) inputCustoLitro.setText(String.format("%.2f", custoLitro));
+        if (numVeiculos != 0) inputNumVeiculos.setText(Integer.toString(numVeiculos));
     }
 
     @SuppressLint("DefaultLocale")
@@ -151,6 +200,7 @@ public class CombustivelActivity extends AppCompatActivity {
         sharedHelper.SetFloat(SharedHelper.ViagemCombustivelCustoLitro, custoLitro);
         sharedHelper.SetInt(SharedHelper.ViagemCombustivelNumVeiculos, numVeiculos);
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalCombustivel, CalcularValorTotalTela());
+        Proximo();
     }
 
     private void Proximo() {

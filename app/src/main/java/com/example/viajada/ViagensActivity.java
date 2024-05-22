@@ -1,9 +1,11 @@
 package com.example.viajada;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,13 +64,16 @@ public class ViagensActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<ViagemModel> viagens = viagemDao.ListarTodas(sharedHelper.GetLong(SharedHelper.UsuarioId));
+        long usuarioId = sharedHelper.GetLong(SharedHelper.UsuarioId);
+
+        ArrayList<ViagemModel> viagens = viagemDao.ListarTodas(usuarioId);
 
         for (ViagemModel viagem : viagens) {
             CriarItemListagem(viagem);
         }
     }
 
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void CriarItemListagem(ViagemModel viagem) {
         LinearLayout layout = new LinearLayout(this);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -82,7 +87,7 @@ public class ViagensActivity extends AppCompatActivity {
         layout.setBackgroundColor(ContextCompat.getColor(this, R.color.verde));
 
         TextView viagemOrigemDestino = new TextView(this);
-        viagemOrigemDestino.setId(R.id.viagem_origem_destino);
+        viagemOrigemDestino.setId(View.generateViewId());
         viagemOrigemDestino.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -94,7 +99,7 @@ public class ViagensActivity extends AppCompatActivity {
         viagemOrigemDestino.setTextColor(Color.WHITE);
 
         TextView viagemDuracao = new TextView(this);
-        viagemDuracao.setId(R.id.viagem_duracao);
+        viagemDuracao.setId(View.generateViewId());
         viagemDuracao.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -104,17 +109,17 @@ public class ViagensActivity extends AppCompatActivity {
         viagemDuracao.setTextColor(Color.WHITE);
 
         TextView viagemNumeroViajantes = new TextView(this);
-        viagemNumeroViajantes.setId(R.id.viagem_numero_viajantes);
+        viagemNumeroViajantes.setId(View.generateViewId());
         viagemNumeroViajantes.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         ));
-        viagemNumeroViajantes.setText(viagem.getPrincipalNumViajantes());
+        viagemNumeroViajantes.setText(Integer.toString(viagem.getPrincipalNumViajantes()));
         viagemNumeroViajantes.setTextSize(16f);
         viagemNumeroViajantes.setTextColor(Color.WHITE);
 
         TextView viagemValorTotal = new TextView(this);
-        viagemValorTotal.setId(R.id.viagem_valor_total);
+        viagemValorTotal.setId(View.generateViewId());
         viagemValorTotal.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -133,7 +138,7 @@ public class ViagensActivity extends AppCompatActivity {
         buttonLayout.setGravity(Gravity.CENTER);
 
         Button deleteButton = new Button(this);
-        deleteButton.setId(R.id.viagem_botao_excluir);
+        deleteButton.setId(View.generateViewId());
         LinearLayout.LayoutParams deleteButtonParams = new LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -155,7 +160,7 @@ public class ViagensActivity extends AppCompatActivity {
         });
 
         Button viewButton = new Button(this);
-        viewButton.setId(R.id.viagem_botao_visualizar);
+        viewButton.setId(View.generateViewId());
         LinearLayout.LayoutParams viewButtonParams = new LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.WRAP_CONTENT,

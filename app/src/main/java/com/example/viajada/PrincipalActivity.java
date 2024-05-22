@@ -1,5 +1,6 @@
 package com.example.viajada;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -59,24 +60,24 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SalvarInformacoes();
-                Proximo();
             }
         });
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void VerificarEdicaoViagem(){
         String origem = sharedHelper.GetString(SharedHelper.ViagemPrincipalOrigem);
         String destino = sharedHelper.GetString(SharedHelper.ViagemPrincipalDestino);
         int duracao = sharedHelper.GetInt(SharedHelper.ViagemPrincipalDuracaoDias);
         int viajantes = sharedHelper.GetInt(SharedHelper.ViagemPrincipalNumViajantes);
         boolean passagemAerea = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaPassagemAerea);
-        boolean hospedagem = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaPassagemAerea);
+        boolean hospedagem = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaHospedagem);
 
-        if(!origem.isEmpty()) inputOrigem.setText(origem);
-        if(!destino.isEmpty()) inputDestino.setText(destino);
-        if(duracao != 0) inputDuracao.setText(duracao);
-        if(viajantes != 0) inputNumViajantes.setText(viajantes);
+        if(origem != null) inputOrigem.setText(origem);
+        if(destino != null) inputDestino.setText(destino);
+        if(duracao != 0) inputDuracao.setText(Integer.toString(duracao));
+        if(viajantes != 0) inputNumViajantes.setText(Integer.toString(viajantes));
         checkPassagemAerea.setChecked(passagemAerea);
         checkHospedagem.setChecked(hospedagem);
     }
@@ -103,6 +104,8 @@ public class PrincipalActivity extends AppCompatActivity {
         sharedHelper.SetInt(SharedHelper.ViagemPrincipalNumViajantes, viajantes);
         sharedHelper.SetBoolean(SharedHelper.ViagemUtilizaPassagemAerea, passagemAerea);
         sharedHelper.SetBoolean(SharedHelper.ViagemUtilizaHospedagem, hospedagem);
+
+        Proximo();
     }
 
     private void Proximo(){

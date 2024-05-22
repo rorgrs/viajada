@@ -31,7 +31,7 @@ public class ViagemCustoAdicionalDao extends BaseDao {
                 values.put(ViagemCustoAdicionalModel.COLUNA_DESCRICAO, model.getDescricao());
                 values.put(ViagemCustoAdicionalModel.COLUNA_CUSTO, model.getCusto());
 
-                db.insert(ViagemModel.TABELA_NOME, null, values);
+                db.insert(ViagemCustoAdicionalModel.TABELA_NOME, null, values);
             }
 
         } finally {

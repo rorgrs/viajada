@@ -69,6 +69,17 @@ public class ViagemModel {
     private Integer hospedagemTotalQuartos;
     private List<ViagemCustoAdicionalModel> custosAdicionais;
 
+    public boolean possuiPassagemAerea() {
+        return tarifaAereaCustoPessoa != null && tarifaAereaCustoAluguelVeiculo != null
+                && tarifaAereaCustoPessoa != 0 && tarifaAereaCustoAluguelVeiculo != 0;
+    }
+
+    public boolean possuiHospedagem() {
+        return hospedagemCustoMedioNoite != null && hospedagemTotalQuartos != null && hospedagemTotalNoites != null
+                && hospedagemCustoMedioNoite != 0 && hospedagemTotalQuartos != 0 && hospedagemTotalNoites != 0;
+
+    }
+
     public float getCustoTotal() {
         return getCustoCombustivel() + getCustoHospedagem() + getCustoGastosAdicionais() + getCustoTarifaAerea() + getCustoRefeicoes();
     }
@@ -78,6 +89,7 @@ public class ViagemModel {
     }
 
     public float getCustoHospedagem() {
+        if (!possuiHospedagem()) return 0;
         return hospedagemCustoMedioNoite * hospedagemTotalQuartos * hospedagemTotalNoites;
     }
 
@@ -115,7 +127,7 @@ public class ViagemModel {
     }
 
     public void setUsuarioId(long usuarioId) {
-        this.usuario_id = id;
+        this.usuario_id = usuarioId;
     }
 
     public String getPrincipalOrigem() {

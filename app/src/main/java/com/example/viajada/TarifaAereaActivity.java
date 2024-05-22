@@ -60,7 +60,23 @@ public class TarifaAereaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SalvarInformacoes();
-                Proximo();
+            }
+        });
+
+        inputCustoPessoa.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                VerificarValorTotal();
             }
         });
 
@@ -135,6 +151,7 @@ public class TarifaAereaActivity extends AppCompatActivity {
         sharedHelper.SetFloat(SharedHelper.ViagemTarifaAereaCustoAluguelVeiculo, aluguelVeiculo);
         sharedHelper.SetFloat(SharedHelper.ViagemTarifaAereaCustoPorPessoa, custoPessoa);
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalTarifaAerea, CalcularValorTotalTela());
+        Proximo();
     }
 
     private void Proximo(){

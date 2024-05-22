@@ -285,44 +285,7 @@
                     android:textSize="16sp" />
             </LinearLayout>
             
-            <!-- Seção Custos Adicionais -->
-            <LinearLayout
-                android:id="@+id/custos_adicionais"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/custos_adicionais_titulo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/verde"
-                    android:padding="8dp"
-                    android:text="@string/custos_adicionais"
-                    android:textColor="@color/begeclaro"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/custo_adicional_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:hint="@string/descricao_preco"
-                    android:singleLine="true"
-                    android:scrollHorizontally="true"
-                    android:textColor="@color/cinzae"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/total_custos_adicionais"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:hint="@string/valor_total_nao_informado"
-                    android:textColor="@color/cinzae"
-                    android:textSize="16sp" />
-            </LinearLayout>
+            <!-- Seção Custos Adicionais é adicionada pelo código java -->
         </LinearLayout>
     </ScrollView>
 

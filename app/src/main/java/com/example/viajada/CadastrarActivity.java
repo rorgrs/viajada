@@ -73,7 +73,7 @@ public class CadastrarActivity extends AppCompatActivity {
         usuarioNovo.setSenha(pwd);
 
         long id = 0;
-        
+
         try {
             id = usuarioDao.Inserir(usuarioNovo);
         } catch (Exception e) {

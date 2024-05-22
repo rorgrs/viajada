@@ -11,7 +11,7 @@ import com.example.viajada.database.model.ViagemModel;
 public class DBOpenHelper extends SQLiteOpenHelper {
 
     private static final String BANCO_NOME = "viajada.db";
-    private static final int VERSAO_BANCO = 2;
+    private static final int VERSAO_BANCO = 4;
 
     public DBOpenHelper(Context context) {
         super(context, BANCO_NOME, null, VERSAO_BANCO);
@@ -30,5 +30,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(UsuarioModel.DROP_TABLE);
         db.execSQL(ViagemModel.DROP_TABLE);
         db.execSQL(ViagemCustoAdicionalModel.DROP_TABLE);
+
+        db.execSQL(UsuarioModel.CREATE_TABLE);
+        db.execSQL(ViagemModel.CREATE_TABLE);
+        db.execSQL(ViagemCustoAdicionalModel.CREATE_TABLE);
     }
 }
