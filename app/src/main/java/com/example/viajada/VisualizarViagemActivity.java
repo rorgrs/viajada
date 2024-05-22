@@ -1,60 +1,66 @@
 package com.example.viajada;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.viajada.database.dao.ViagemDao;
-import com.example.viajada.helper.AlertHelper;
-import com.example.viajada.helper.SharedHelper;
+import com.example.viajada.database.model.ViagemModel;
 
 public class VisualizarViagemActivity extends AppCompatActivity {
-    private SharedHelper sharedHelper;
-    private AlertHelper alertHelper;
-    private Button btnSair, btnNovaViagem;
-    private LinearLayout listagem;
-    private ViagemDao viagemDao;
+
+    private TextView origem, destino, duracao, numeroViajantes, totalKm, mediaLitro, custoLitro,
+            totalVeiculos, custoPessoa, aluguelVeiculo, custoRefeicao, refeicaoDia, custoNoite,
+            totalNoites, totalQuartos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar);
+        setContentView(R.layout.activity_visualizar_viagem);
 
-        sharedHelper = new SharedHelper(VisualizarViagemActivity.this);
-        alertHelper = new AlertHelper(VisualizarViagemActivity.this);
-        btnSair = findViewById(R.id.sair_btn);
-        btnNovaViagem = findViewById(R.id.nova_viagem_btn);
-        listagem = (LinearLayout) findViewById(R.id.listagem);
-        viagemDao = new ViagemDao(VisualizarViagemActivity.this);
+        origem = findViewById(R.id.origem);
+        destino = findViewById(R.id.destino);
+        duracao = findViewById(R.id.duracao);
+        numeroViajantes = findViewById(R.id.numero_viagens);
+        totalKm = findViewById(R.id.total_km);
+        mediaLitro = findViewById(R.id.media_litro);
+        custoLitro = findViewById(R.id.custo_litro);
+        totalVeiculos = findViewById(R.id.total_veiculos);
+        custoPessoa = findViewById(R.id.custo_pessoa);
+        aluguelVeiculo = findViewById(R.id.aluguel_veiculo);
+        custoRefeicao = findViewById(R.id.custo_refeicao);
+        refeicaoDia = findViewById(R.id.refeicao_dia);
+        custoNoite = findViewById(R.id.custo_noite);
+        totalNoites = findViewById(R.id.total_noites);
+        totalQuartos = findViewById(R.id.total_quartos);
 
-        ListarViagens();
-
-        btnSair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sharedHelper.Clear();
-
-                Intent intent = new Intent(VisualizarViagemActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnNovaViagem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sharedHelper.ClearViagem();
-
-                Intent intent = new Intent(VisualizarViagemActivity.this, PrincipalActivity.class);
-                startActivity(intent);
-            }
-        });
+        long viagemId = getIntent().getLongExtra("VIAGEM_ID", -1);
+        if (viagemId != -1) {
+            carregarDadosViagem(viagemId);
+        }
     }
 
-    private void ListarViagens() {
+    private void carregarDadosViagem(long viagemId) {
+        ViagemDao viagemDao = new ViagemDao(this);
+        ViagemModel viagem = viagemDao.ConsultarPorId(viagemId);
 
+        if (viagem != null) {
+            origem.setText("Origem: " + viagem.getPrincipalOrigem());
+            destino.setText("Destino: " + viagem.getPrincipalDestino());
+            duracao.setText("Duração: " + viagem.getPrincipalDuracaoDias() + " dias");
+            numeroViajantes.setText("Número de Viajantes: " + viagem.getPrincipalNumViajantes());
+            totalKm.setText("Total Estimado em KM: " + viagem.getCombustivelDistanciaTotalKm());
+            mediaLitro.setText("Média por Litro: " + viagem.getCombustivelMediaKmLitro());
+            custoLitro.setText("Custo por Litro: " + viagem.getCombustivelCustoMedioLitro());
+            totalVeiculos.setText("Total de Veículos: " + viagem.getCombustivelNumVeiculos());
+            custoPessoa.setText("Custo por Pessoa: " + viagem.getTarifaAereaCustoPessoa());
+            aluguelVeiculo.setText("Aluguel do Veículo: " + viagem.getTarifaAereaCustoAluguelVeiculo());
+            custoRefeicao.setText("Custo por Refeição: " + viagem.getRefeicaoCustoMedio());
+            refeicaoDia.setText("Número de Refeições por Dia: " + viagem.getRefeicaoPorDia());
+            custoNoite.setText("Custo Médio por Noite: " + viagem.getHospedagemCustoMedioNoite());
+            totalNoites.setText("Total de Noites: " + viagem.getHospedagemTotalNoites());
+            totalQuartos.setText("Total de Quartos: " + viagem.getHospedagemTotalQuartos());
+        }
     }
 }
