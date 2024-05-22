@@ -2,14 +2,12 @@ package com.example.viajada;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +27,8 @@ import com.example.viajada.database.model.ViagemModel;
 import com.example.viajada.helper.AlertHelper;
 import com.example.viajada.helper.LayoutHelper;
 import com.example.viajada.helper.SharedHelper;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CustosAdicionaisActivity extends AppCompatActivity {
 
