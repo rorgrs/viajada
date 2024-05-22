@@ -72,7 +72,14 @@ public class CadastrarActivity extends AppCompatActivity {
         usuarioNovo.setNome(usr);
         usuarioNovo.setSenha(pwd);
 
-        long id = usuarioDao.Inserir(usuarioNovo);
+        long id = 0;
+        
+        try {
+            id = usuarioDao.Inserir(usuarioNovo);
+        } catch (Exception e) {
+            alertHelper.CriarAlerta("Erro", "Ocorreu um erro ao cadastrar usuário");
+            return;
+        }
 
         sharedHelper.SetLong(SharedHelper.UsuarioId, id);
 

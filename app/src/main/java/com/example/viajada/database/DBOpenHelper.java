@@ -11,7 +11,7 @@ import com.example.viajada.database.model.ViagemModel;
 public class DBOpenHelper extends SQLiteOpenHelper {
 
     private static final String BANCO_NOME = "viajada.db";
-    private static final int VERSAO_BANCO = 1;
+    private static final int VERSAO_BANCO = 2;
 
     public DBOpenHelper(Context context) {
         super(context, BANCO_NOME, null, VERSAO_BANCO);
@@ -27,6 +27,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(UsuarioModel.DROP_TABLE);
         db.execSQL(ViagemModel.DROP_TABLE);
         db.execSQL(ViagemCustoAdicionalModel.DROP_TABLE);
     }

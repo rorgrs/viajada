@@ -29,6 +29,7 @@ public class ViagemModel {
             "CREATE TABLE " + TABELA_NOME +
                     " ( "
                     + COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + COLUNA_USUARIO_ID + " INTEGER NOT NULL, "
                     + COLUNA_PRINCIPAL_ORIGEM + " TEXT NOT NULL, "
                     + COLUNA_PRINCIPAL_DESTINO + " TEXT NOT NULL, "
                     + COLUNA_PRINCIPAL_DURACAO_DIAS + " INTEGER NOT NULL, "
