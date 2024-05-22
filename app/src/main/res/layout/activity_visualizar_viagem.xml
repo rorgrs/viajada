@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/listagem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -26,7 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Origem: [Origem]"
+                    android:hint="@string/origem_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Destino: [Destino]"
+                    android:hint="@string/destino_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Duração: [Duração]"
+                    android:hint="@string/duraco_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -69,13 +69,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Número de Viajantes: [Num Viajantes]"
+                    android:hint="@string/numero_de_viajantes_nao_informado"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/total_viagem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/valor_total_da_viagem_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
             </LinearLayout>
 
             <!-- Seção Combustível -->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Total Estimado em KM: [Total KM]"
+                    android:hint="@string/distancia_estimada_em_km_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -105,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Média por Litro: [Média por Litro]"
+                    android:hint="@string/media_de_km_por_litro_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -114,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Custo por Litro: [Custo por Litro]"
+                    android:hint="@string/custo_por_litro_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -123,12 +130,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Total de Veículos: [Total Veículos]"
+                    android:hint="@string/total_de_veiculos_nao_informado"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/total_combustivel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/valor_total_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
             </LinearLayout>
 
+            <!-- Seção Tarifa Aérea -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Custo por Pessoa: [Custo por Pessoa]"
+                    android:hint="@string/custo_por_pessoa_n_o_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -158,12 +175,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Aluguel do Veículo: [Custo Aluguel Veículo]"
+                    android:hint="@string/aluguel_do_ve_culo_n_o_informado"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/total_tarifa_aerea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/valor_total_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
             </LinearLayout>
 
+            <!-- Seção Refeições -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,7 +210,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Custo por Refeição: [Custo por Refeição]"
+                    android:hint="@string/custo_por_refei_o_n_o_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -193,12 +219,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Número de Refeições por Dia: [Num Refeições Dia]"
+                    android:hint="@string/n_mero_de_refei_es_por_dia_n_o_informado"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/total_refeicoes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/valor_total_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
             </LinearLayout>
-
+            
+            <!-- Seção Hospedagem -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Custo Médio por Noite: [Custo por Noite]"
+                    android:hint="@string/custo_m_dio_por_noite_n_o_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -228,7 +263,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Total de Noites: [Total Noites]"
+                    android:hint="@string/total_de_noites_n_o_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
 
@@ -237,7 +272,54 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Total de Quartos: [Total Quartos]"
+                    android:hint="@string/total_de_quartos_n_o_informado"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/total_hospedagem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/valor_total_nao_informado"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            
+            <!-- Seção Custos Adicionais -->
+            <LinearLayout
+                android:id="@+id/custos_adicionais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/custos_adicionais_titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/verde"
+                    android:padding="8dp"
+                    android:text="@string/custos_adicionais"
+                    android:textColor="@color/begeclaro"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/custo_adicional_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/descricao_preco"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:textColor="@color/cinzae"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/total_custos_adicionais"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:hint="@string/valor_total_nao_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -261,9 +343,8 @@
             android:textColor="@color/begeclaro"
             android:layout_weight="1"
             android:background="@drawable/shape_botao"
-            android:text="@string/voltar" />
-
-
+            android:hint="@string/voltar" />
+        
         <Button
             android:id="@+id/editar"
             android:layout_width="0dp"
@@ -273,6 +354,6 @@
             android:textColor="@color/begeclaro"
             android:layout_weight="1"
             android:background="@drawable/shape_botao"
-            android:text="@string/editar" />
+            android:hint="@string/editar" />
     </LinearLayout>
 </LinearLayout>

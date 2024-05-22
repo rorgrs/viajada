@@ -44,7 +44,7 @@
     <string name="concluir">CONCLUIR</string>
     <string name="viagens">Viagens</string>
     <string name="excluir">Excluir</string>
-    <string name="editar">Editar</string>
+    <string name="editar">EDITAR</string>
     <string name="sair">Sair</string>
     <string name="nova_viagem">Nova Viagem</string>
     <string name="custoNoite">CUSTO MÉDIO POR NOITE</string>
@@ -53,5 +53,30 @@
     <string name="digite_aqui">Digite aqui</string>
     <string name="finalizar">Finalizar</string>
     <string name="gastos_com_hospedagem">GASTOS COM HOSPEDAGEM</string>
+    <string name="origem_nao_informado">Origem: Não informado</string>
+    <string name="destino_nao_informado">Destino: Não informado</string>
+    <string name="duraco_nao_informado">Duração: Não informado</string>
+    <string name="numero_de_viajantes_nao_informado">Número de viajantes: Não informado</string>
+    <string name="distancia_estimada_em_km_nao_informado">Distância estimada em Km: Não informado</string>
+    <string name="media_de_km_por_litro_nao_informado">Média de Km por litro: Não informado</string>
+    <string name="custo_por_litro_nao_informado">Custo por litro: Não informado</string>
+    <string name="total_de_veiculos_nao_informado">Total de veículos: Não informado</string>
+    <string name="custo_por_pessoa_n_o_informado">Custo por pessoa: Não informado</string>
+    <string name="aluguel_do_ve_culo_n_o_informado">Aluguel do veículo: Não informado</string>
+    <string name="custo_por_refei_o_n_o_informado">Custo por refeição: Não informado</string>
+    <string name="n_mero_de_refei_es_por_dia_n_o_informado">Número de refeições por dia: Não informado</string>
+    <string name="custo_m_dio_por_noite_n_o_informado">Custo médio por noite: Não informado</string>
+    <string name="total_de_noites_n_o_informado">Total de noites: Não informado</string>
+    <string name="total_de_quartos_n_o_informado">Total de quartos: Não informado</string>
+    <string name="custos_adicionais">CUSTOS ADICIONAIS</string>
+    <string name="descricao_preco">Descrição: Preço em reais</string>
+    <string name="valor_total_nao_informado">Valor total: Não informado</string>
+    <string name="valor_total_da_viagem_nao_informado">Valor total da viagem: Não informado</string>
+    <string name="ver_detalhes">VER DETALHES</string>
+    <string name="cidade_origem_cidade_destino">Cidade Origem - Cidade Destino</string>
+    <string name="duracao_xx_dias">Duração: XX Dias</string>
+    <string name="numero_de_viajantes_xx">Número de viajantes: XX</string>
+    <string name="valor_total_da_viagem_xx_reais">Valor total da viagem: XX reais</string>
+    <string name="id">Id</string>
 
 </resources>

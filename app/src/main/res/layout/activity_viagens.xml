@@ -17,13 +17,14 @@
         android:text="@string/viagens"
         android:textSize="40sp"
         android:textStyle="bold"
+        android:layout_weight="1"
         android:padding="8dp"
         android:textColor="@color/cinzae" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_weight="8">
 
         <LinearLayout
             android:id="@+id/listagem_viagens"
@@ -40,12 +41,11 @@
                 android:layout_marginBottom="8dp"
                 android:background="@color/verde"
                 android:layout_marginTop="20dp">
-
                 <TextView
                     android:id="@+id/viagem_origem_destino"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="[cidade origem] - [cidade destino]"
+                    android:text="@string/cidade_origem_cidade_destino"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:paddingBottom="4dp"
@@ -55,7 +55,7 @@
                     android:id="@+id/viagem_duracao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="[duração]"
+                    android:text="@string/duracao_xx_dias"
                     android:textSize="16sp"
                     android:textColor="@color/white" />
 
@@ -63,7 +63,7 @@
                     android:id="@+id/viagem_numero_viajantes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="[numero de viajantes]"
+                    android:text="@string/numero_de_viajantes_xx"
                     android:textSize="16sp"
                     android:textColor="@color/white" />
 
@@ -71,8 +71,9 @@
                     android:id="@+id/viagem_valor_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="[valor total]"
+                    android:text="@string/valor_total_da_viagem_xx_reais"
                     android:textSize="16sp"
+                    android:paddingBottom="8dp"
                     android:textColor="@color/white" />
 
                 <LinearLayout
@@ -88,18 +89,16 @@
                         android:layout_weight="1"
                         android:text="@string/excluir"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginTop="1dp"
                         android:textColor="@color/white"
                         android:background="@drawable/shape_botao"/>
 
                     <Button
-                        android:id="@+id/viagem_botao_editar"
+                        android:id="@+id/viagem_botao_visualizar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/editar"
+                        android:text="@string/ver_detalhes"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginTop="1dp"
                         android:textColor="@color/white"
                         android:background="@drawable/shape_botao"/>
                 </LinearLayout>
@@ -112,27 +111,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_weight="1"
         android:gravity="center"
         android:padding="8dp"
         android:background="@color/verde">
 
         <Button
             android:id="@+id/sair_btn"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/shape_botao"
             android:text="@string/sair"
+            android:textSize="22sp"
             android:textColor="@color/white" />
 
         <Button
             android:id="@+id/nova_viagem_btn"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="@string/nova_viagem"
             android:layout_marginStart="16dp"
             android:textColor="@color/white"
+            android:textSize="22sp"
             android:background="@drawable/shape_botao"/>
 
     </LinearLayout>

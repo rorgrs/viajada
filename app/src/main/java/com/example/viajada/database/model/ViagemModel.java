@@ -237,7 +237,6 @@ public class ViagemModel {
         this.hospedagemTotalQuartos = hospedagemTotalQuartos;
     }
 
-
     public List<ViagemCustoAdicionalModel> getCustosAdicionais() {
         return custosAdicionais;
     }
