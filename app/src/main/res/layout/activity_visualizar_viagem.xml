@@ -154,7 +154,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/alugeul_veiculo"
+                    android:id="@+id/aluguel_veiculo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
