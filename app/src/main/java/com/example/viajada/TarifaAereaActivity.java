@@ -27,7 +27,7 @@ public class TarifaAereaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_tarifa_aerea);
 
         sharedHelper = new SharedHelper(TarifaAereaActivity.this);
         alertHelper = new AlertHelper(TarifaAereaActivity.this);
@@ -98,7 +98,7 @@ public class TarifaAereaActivity extends AppCompatActivity {
         float valorTotalTarifaAerea = CalcularValorTotalTela();
         float valorTotalHospedagem = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalHospedagem);
         float valorTotalRefeicao = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalRefeicao);
-        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalGastosAdicionais);
+        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalCustosAdicionais);
 
         float valorTotal = valorTotalCombustivel + valorTotalTarifaAerea + valorTotalHospedagem + valorTotalRefeicao + valorTotalGastosAdicionais;
 
@@ -138,7 +138,6 @@ public class TarifaAereaActivity extends AppCompatActivity {
     }
 
     private void Proximo(){
-        boolean passagemAerea = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaPassagemAerea);
         Intent intent = new Intent(TarifaAereaActivity.this, RefeicoesActivity.class);
         startActivity(intent);
     }

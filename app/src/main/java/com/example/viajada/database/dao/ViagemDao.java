@@ -45,17 +45,21 @@ public class ViagemDao extends BaseDao {
         try {
             Open();
 
-            //colunas obrigatorias
             ContentValues values = new ContentValues();
+
+            //colunas obrigatorias
             values.put(ViagemModel.COLUNA_USUARIO_ID, model.getUsuarioId());
+
             values.put(ViagemModel.COLUNA_PRINCIPAL_ORIGEM, model.getPrincipalOrigem());
             values.put(ViagemModel.COLUNA_PRINCIPAL_DESTINO, model.getPrincipalDestino());
             values.put(ViagemModel.COLUNA_PRINCIPAL_DURACAO_DIAS, model.getPrincipalDuracaoDias());
             values.put(ViagemModel.COLUNA_PRINCIPAL_NUM_VIAJANTES, model.getPrincipalNumViajantes());
+
             values.put(ViagemModel.COLUNA_COMBUSTIVEL_DISTANCIA_TOTAL_KM, model.getCombustivelDistanciaTotalKm());
             values.put(ViagemModel.COLUNA_COMBUSTIVEL_MEDIA_KM_LITRO, model.getCombustivelMediaKmLitro());
             values.put(ViagemModel.COLUNA_COMBUSTIVEL_CUSTO_MEDIO_LITRO, model.getCombustivelCustoMedioLitro());
             values.put(ViagemModel.COLUNA_COMBUSTIVEL_NUM_VEICULOS, model.getCombustivelNumVeiculos());
+
             values.put(ViagemModel.COLUNA_REFEICAO_CUSTO_MEDIO, model.getRefeicaoCustoMedio());
             values.put(ViagemModel.COLUNA_REFEICAO_POR_DIA, model.getRefeicaoPorDia());
 
@@ -71,17 +75,72 @@ public class ViagemDao extends BaseDao {
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES, model.getHospedagemTotalNoites());
             }
 
-            //se tem custos adicionais
-            if (!model.getCustosAdicionais().isEmpty()) {
-                custoAdicionalDao.Inserir(model.getCustosAdicionais(), model.getId());
-            }
-
             rowId = db.insert(ViagemModel.TABELA_NOME, null, values);
+
         } finally {
             Close();
         }
 
+        //se tem custos adicionais
+        if (!model.getCustosAdicionais().isEmpty()) {
+            custoAdicionalDao.Inserir(model.getCustosAdicionais(), rowId);
+        }
+
         return rowId;
+    }
+
+    public void Atualizar(ViagemModel model){
+        try {
+            Open();
+
+            ContentValues values = new ContentValues();
+
+            //colunas obrigatorias
+            values.put(ViagemModel.COLUNA_USUARIO_ID, model.getUsuarioId());
+
+            values.put(ViagemModel.COLUNA_PRINCIPAL_ORIGEM, model.getPrincipalOrigem());
+            values.put(ViagemModel.COLUNA_PRINCIPAL_DESTINO, model.getPrincipalDestino());
+            values.put(ViagemModel.COLUNA_PRINCIPAL_DURACAO_DIAS, model.getPrincipalDuracaoDias());
+            values.put(ViagemModel.COLUNA_PRINCIPAL_NUM_VIAJANTES, model.getPrincipalNumViajantes());
+
+            values.put(ViagemModel.COLUNA_COMBUSTIVEL_DISTANCIA_TOTAL_KM, model.getCombustivelDistanciaTotalKm());
+            values.put(ViagemModel.COLUNA_COMBUSTIVEL_MEDIA_KM_LITRO, model.getCombustivelMediaKmLitro());
+            values.put(ViagemModel.COLUNA_COMBUSTIVEL_CUSTO_MEDIO_LITRO, model.getCombustivelCustoMedioLitro());
+            values.put(ViagemModel.COLUNA_COMBUSTIVEL_NUM_VEICULOS, model.getCombustivelNumVeiculos());
+
+            values.put(ViagemModel.COLUNA_REFEICAO_CUSTO_MEDIO, model.getRefeicaoCustoMedio());
+            values.put(ViagemModel.COLUNA_REFEICAO_POR_DIA, model.getRefeicaoPorDia());
+
+            //se tem tarifa aerea
+            if (model.getTarifaAereaCustoPessoa() != null && model.getTarifaAereaCustoAluguelVeiculo() != null) {
+                values.put(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_PESSOA, model.getTarifaAereaCustoPessoa());
+                values.put(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_ALUGUEL_VEICULO, model.getTarifaAereaCustoAluguelVeiculo());
+            } else {
+                values.putNull(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_PESSOA);
+                values.putNull(ViagemModel.COLUNA_TARIFA_AEREA_CUSTO_ALUGUEL_VEICULO);
+            }
+
+            //se tem hospedagem
+            if (model.getHospedagemCustoMedioNoite() != null && model.getHospedagemTotalNoites() != null) {
+                values.put(ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE, model.getHospedagemCustoMedioNoite());
+                values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES, model.getHospedagemTotalNoites());
+            } else {
+                values.putNull(ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE);
+                values.putNull(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES);
+            }
+
+            db.update(ViagemModel.TABELA_NOME, values, ViagemModel.COLUNA_ID + " = ?", new String[]{String.valueOf(model.getId())});
+        } finally {
+            Close();
+        }
+
+        //se tem custos adicionais
+
+        custoAdicionalDao.DeletarPorViagemId(model.getId());
+
+        if (!model.getCustosAdicionais().isEmpty()) {
+            custoAdicionalDao.Inserir(model.getCustosAdicionais(), model.getId());
+        }
     }
 
     public long DeletarPorId(long id) {

@@ -74,9 +74,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:inputType="numberDecimal"
-                android:text="@string/reais"
-                android:textColor="@color/black"
-                app:prefixText="@string/reais" />
+                android:hint="@string/reais"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
@@ -105,9 +104,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="2"
                 android:inputType="numberDecimal"
-                android:text="@string/reais"
-                android:textColor="@color/black"
-                app:prefixText="@string/reais" />
+                android:hint="@string/reais"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 

@@ -23,7 +23,7 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/shape_edittext"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_.-"
         android:hint="@string/nome_usuario"
         android:inputType="textFilter"
         android:textAlignment="center"
@@ -38,6 +38,7 @@
         android:background="@drawable/shape_edittext"
         android:hint="@string/senha"
         android:textAlignment="center"
+        android:inputType="textPassword"
         android:textColor="@color/cinzae" />
 
     <EditText
@@ -49,6 +50,7 @@
         android:background="@drawable/shape_edittext"
         android:hint="@string/confirmar_senha"
         android:textAlignment="center"
+        android:inputType="textPassword"
         android:textColor="@color/cinzae" />
 
     <LinearLayout

@@ -27,7 +27,7 @@ public class CombustivelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_combustivel);
 
         sharedHelper = new SharedHelper(CombustivelActivity.this);
         alertHelper = new AlertHelper(CombustivelActivity.this);
@@ -42,6 +42,7 @@ public class CombustivelActivity extends AppCompatActivity {
         inputNumVeiculos = findViewById(R.id.total_veiculos);
 
         VerificarEdicaoViagem();
+
         VerificarValorTotal();
 
         btnX.setOnClickListener(new View.OnClickListener() {
@@ -88,71 +89,71 @@ public class CombustivelActivity extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     private void VerificarEdicaoViagem(){
         int kmTotal = sharedHelper.GetInt(SharedHelper.ViagemCombustivelDistanciaKm);
-        int kmLitro = sharedHelper.GetInt(SharedHelper.ViagemCombustivelKmLitro);
+        float kmLitro = sharedHelper.GetFloat(SharedHelper.ViagemCombustivelKmLitro);
         float custoLitro = sharedHelper.GetFloat(SharedHelper.ViagemCombustivelCustoLitro);
         int numVeiculos = sharedHelper.GetInt(SharedHelper.ViagemCombustivelNumVeiculos);
 
         if(kmTotal != 0) inputKmTotal.setText(kmTotal);
-        if(kmLitro != 0) inputMediaKmLitro.setText(kmLitro);
+        if(kmLitro != 0) inputMediaKmLitro.setText(String.format("%.2f", kmLitro));
         if(custoLitro != 0) inputCustoLitro.setText(String.format("%.2f", custoLitro));
         if(numVeiculos != 0) inputNumVeiculos.setText(numVeiculos);
     }
 
     @SuppressLint("DefaultLocale")
-    private void VerificarValorTotal(){
+    private void VerificarValorTotal() {
         float valorTotalCombustivel = CalcularValorTotalTela();
         float valorTotalTarifaAerea = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalTarifaAerea);
         float valorTotalHospedagem = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalHospedagem);
         float valorTotalRefeicao = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalRefeicao);
-        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalGastosAdicionais);
+        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalCustosAdicionais);
 
         float valorTotal = valorTotalCombustivel + valorTotalTarifaAerea + valorTotalHospedagem + valorTotalRefeicao + valorTotalGastosAdicionais;
 
         viewValorTotal.setText(String.format("%.2f", valorTotal));
     }
 
-    private float CalcularValorTotalTela(){
+    private float CalcularValorTotalTela() {
         String kmTotalStr = inputKmTotal.getText().toString();
         String kmLitroStr = inputMediaKmLitro.getText().toString();
         String custoLitroStr = inputCustoLitro.getText().toString();
         String numVeiculosStr = inputNumVeiculos.getText().toString();
 
-        if(kmTotalStr.isEmpty() || kmLitroStr.isEmpty() || custoLitroStr.isEmpty() || numVeiculosStr.isEmpty()){
+        if (kmTotalStr.isEmpty() || kmLitroStr.isEmpty() || custoLitroStr.isEmpty() || numVeiculosStr.isEmpty()) {
             return 0;
         }
 
         int kmTotal = Integer.parseInt(kmTotalStr);
-        int kmLitro = Integer.parseInt(kmLitroStr);
-        float custoLitro = Integer.parseInt(custoLitroStr);
+        float kmLitro = Float.parseFloat(kmLitroStr);
+        float custoLitro = Float.parseFloat(custoLitroStr);
         int numVeiculos = Integer.parseInt(numVeiculosStr);
 
-        return (((float) kmTotal /kmLitro) * custoLitro) / numVeiculos;
+        return (((float) kmTotal / kmLitro) * custoLitro) / numVeiculos;
     }
 
-    private void SalvarInformacoes(){
+    private void SalvarInformacoes() {
         String kmTotalStr = inputKmTotal.getText().toString();
         String kmLitroStr = inputMediaKmLitro.getText().toString();
         String custoLitroStr = inputCustoLitro.getText().toString();
         String numVeiculosStr = inputNumVeiculos.getText().toString();
 
-        if(kmTotalStr.isEmpty() || kmLitroStr.isEmpty() || custoLitroStr.isEmpty() || numVeiculosStr.isEmpty()){
+        if (kmTotalStr.isEmpty() || kmLitroStr.isEmpty() || custoLitroStr.isEmpty() || numVeiculosStr.isEmpty()) {
             alertHelper.CriarAlerta("Erro", "Preencha todos os campos.");
             return;
         }
 
         int kmTotal = Integer.parseInt(kmTotalStr);
-        int kmLitro = Integer.parseInt(kmLitroStr);
-        float custoLitro = Integer.parseInt(custoLitroStr);
+        float kmLitro = Float.parseFloat(kmLitroStr);
+        float custoLitro = Float.parseFloat(custoLitroStr);
         int numVeiculos = Integer.parseInt(numVeiculosStr);
 
         sharedHelper.SetInt(SharedHelper.ViagemCombustivelDistanciaKm, kmTotal);
-        sharedHelper.SetInt(SharedHelper.ViagemCombustivelKmLitro, kmLitro);
+        sharedHelper.SetFloat(SharedHelper.ViagemCombustivelKmLitro, kmLitro);
         sharedHelper.SetFloat(SharedHelper.ViagemCombustivelCustoLitro, custoLitro);
         sharedHelper.SetInt(SharedHelper.ViagemCombustivelNumVeiculos, numVeiculos);
         sharedHelper.SetFloat(SharedHelper.ViagemValorTotalCombustivel, CalcularValorTotalTela());
     }
 
-    private void Proximo(){
+    private void Proximo() {
         boolean passagemAerea = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaPassagemAerea);
         Intent intent = new Intent(CombustivelActivity.this, passagemAerea ? TarifaAereaActivity.class : RefeicoesActivity.class);
         startActivity(intent);

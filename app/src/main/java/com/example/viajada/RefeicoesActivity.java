@@ -27,7 +27,7 @@ public class RefeicoesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_refeicoes);
 
         sharedHelper = new SharedHelper(RefeicoesActivity.this);
         alertHelper = new AlertHelper(RefeicoesActivity.this);
@@ -40,6 +40,7 @@ public class RefeicoesActivity extends AppCompatActivity {
         inputRefeicoesPorDia = findViewById(R.id.refeicao_dia);
 
         VerificarEdicaoViagem();
+
         VerificarValorTotal();
 
         btnX.setOnClickListener(new View.OnClickListener() {
@@ -88,8 +89,8 @@ public class RefeicoesActivity extends AppCompatActivity {
         float custoRefeicao = sharedHelper.GetFloat(SharedHelper.ViagemRefeicaoCustoMedio);
         int refeicoesDia = sharedHelper.GetInt(SharedHelper.ViagemRefeicaoNumPorDia);
 
-        if(refeicoesDia != 0) inputRefeicoesPorDia.setText(refeicoesDia);
         if(custoRefeicao != 0) inputCustoRefeicao.setText(String.format("%.2f", custoRefeicao));
+        if(refeicoesDia != 0) inputRefeicoesPorDia.setText(refeicoesDia);
     }
 
     @SuppressLint("DefaultLocale")
@@ -98,7 +99,7 @@ public class RefeicoesActivity extends AppCompatActivity {
         float valorTotalTarifaAerea = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalTarifaAerea);
         float valorTotalHospedagem = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalHospedagem);
         float valorTotalRefeicao = CalcularValorTotalTela();
-        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalGastosAdicionais);
+        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalCustosAdicionais);
 
         float valorTotal = valorTotalCombustivel + valorTotalTarifaAerea + valorTotalHospedagem + valorTotalRefeicao + valorTotalGastosAdicionais;
 

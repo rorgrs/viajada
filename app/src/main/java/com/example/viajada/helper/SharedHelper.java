@@ -29,11 +29,12 @@ public class SharedHelper {
     public static final String ViagemHospedagemNumQuartos = "viagem_" + ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES;
     public static final String ViagemUtilizaPassagemAerea = "viagem_utiliza_passagem_aerea";
     public static final String ViagemUtilizaHospedagem = "viagem_utiliza_hospedagem";
+    public static final String ViagemCustosAdicionais = "viagem_custos_adicionais";
     public static final String ViagemValorTotalCombustivel = "viagem_valor_total_combustivel";
     public static final String ViagemValorTotalTarifaAerea = "viagem_valor_total_tarifa_aerea";
     public static final String ViagemValorTotalRefeicao = "viagem_valor_total_refeicao";
     public static final String ViagemValorTotalHospedagem = "viagem_valor_total_hospedagem";
-    public static final String ViagemValorTotalGastosAdicionais = "viagem_valor_total_gastos_adicionais";
+    public static final String ViagemValorTotalCustosAdicionais = "viagem_valor_total_custos_adicionais";
 
     public SharedHelper(Context context){
         prefs = PreferenceManager.getDefaultSharedPreferences(context);

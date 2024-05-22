@@ -54,41 +54,6 @@
             android:layout_height="wrap_content"
             android:background="@color/begeclaro"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/shape_textview"
-                    android:gravity="center"
-                    android:text="@string/digite_aqui"
-                    android:textColor="@color/white" />
-
-                <EditText
-                    android:id="@+id/custo_refeicao"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="3"
-                    android:text="@string/reais"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_botao"
-                    android:text="@string/x"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
         </ScrollView>
 
         <Button

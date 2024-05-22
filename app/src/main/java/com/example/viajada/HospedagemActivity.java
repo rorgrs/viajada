@@ -27,7 +27,7 @@ public class HospedagemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_hospedagem);
 
         sharedHelper = new SharedHelper(HospedagemActivity.this);
         alertHelper = new AlertHelper(HospedagemActivity.this);
@@ -41,6 +41,7 @@ public class HospedagemActivity extends AppCompatActivity {
         inputTotalQuartos = findViewById(R.id.total_quartos);
 
         VerificarEdicaoViagem();
+
         VerificarValorTotal();
 
         btnX.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +102,7 @@ public class HospedagemActivity extends AppCompatActivity {
         float valorTotalTarifaAerea = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalTarifaAerea);
         float valorTotalHospedagem = CalcularValorTotalTela();
         float valorTotalRefeicao = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalRefeicao);
-        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalGastosAdicionais);
+        float valorTotalGastosAdicionais = sharedHelper.GetFloat(SharedHelper.ViagemValorTotalCustosAdicionais);
 
         float valorTotal = valorTotalCombustivel + valorTotalTarifaAerea + valorTotalHospedagem + valorTotalRefeicao + valorTotalGastosAdicionais;
 
@@ -145,8 +146,7 @@ public class HospedagemActivity extends AppCompatActivity {
     }
 
     private void Proximo(){
-        boolean passagemAerea = sharedHelper.GetBoolean(SharedHelper.ViagemUtilizaPassagemAerea);
-        Intent intent = new Intent(HospedagemActivity.this, passagemAerea ? HospedagemActivity.class : HospedagemActivity.class);
+        Intent intent = new Intent(HospedagemActivity.this, CustosAdicionaisActivity.class);
         startActivity(intent);
     }
 
@@ -176,7 +176,7 @@ public class HospedagemActivity extends AppCompatActivity {
     }
 
     private void Voltar() {
-        Intent intent = new Intent(HospedagemActivity.this, PrincipalActivity.class);
+        Intent intent = new Intent(HospedagemActivity.this, RefeicoesActivity.class);
         startActivity(intent);
     }
 }
