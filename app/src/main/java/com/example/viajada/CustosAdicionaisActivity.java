@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -217,10 +218,10 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
         descricaoEditText.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_textview));
         descricaoEditText.setGravity(Gravity.CENTER);
         descricaoEditText.setSingleLine(true);
-        descricaoEditText.setHorizontallyScrolling(true);
+        descricaoEditText.setMovementMethod(new ScrollingMovementMethod());
         descricaoEditText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(200) });
         if (custo != null) descricaoEditText.setText(custo.getDescricao());
-        else descricaoEditText.setText(R.string.digite_aqui);
+        else descricaoEditText.setHint(R.string.digite_aqui);
         descricaoEditText.setTextColor(Color.WHITE);
 
         // Create the second EditText
