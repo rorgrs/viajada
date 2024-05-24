@@ -81,7 +81,13 @@ public class ViagemModel {
     }
 
     public float getCustoTotal() {
-        return getCustoCombustivel() + getCustoHospedagem() + getCustoGastosAdicionais() + getCustoTarifaAerea() + getCustoRefeicoes();
+        float custo1 = getCustoCombustivel();
+        float custo2 = getCustoHospedagem();
+        float custo3 = getCustoGastosAdicionais();
+        float custo4 = getCustoTarifaAerea();
+        float custo5 = getCustoRefeicoes();
+
+        return custo1 + custo2 + custo3 + custo4 + custo5;
     }
 
     public float getCustoCombustivel() {

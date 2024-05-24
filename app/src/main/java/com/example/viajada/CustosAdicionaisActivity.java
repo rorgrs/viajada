@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
@@ -218,7 +219,8 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
         descricaoEditText.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_textview));
         descricaoEditText.setGravity(Gravity.CENTER);
         descricaoEditText.setSingleLine(true);
-        descricaoEditText.setMovementMethod(new ScrollingMovementMethod());
+        descricaoEditText.setHorizontallyScrolling(true);
+        descricaoEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         descricaoEditText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(200) });
         if (custo != null) descricaoEditText.setText(custo.getDescricao());
         else descricaoEditText.setHint(R.string.digite_aqui);
@@ -233,7 +235,7 @@ public class CustosAdicionaisActivity extends AppCompatActivity {
         ));
         precoEditText.setHint(R.string.reais);
         precoEditText.setTextColor(Color.BLACK);
-        descricaoEditText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(8) });
+        precoEditText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(8) });
         if (custo != null) precoEditText.setText(String.format("%.2f", custo.getCusto()));
 
         precoEditText.addTextChangedListener(new TextWatcher() {

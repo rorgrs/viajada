@@ -28,7 +28,8 @@ public class ViagemDao extends BaseDao {
             ViagemModel.COLUNA_REFEICAO_CUSTO_MEDIO,
             ViagemModel.COLUNA_REFEICAO_POR_DIA,
             ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE,
-            ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES
+            ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES,
+            ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_QUARTOS,
     };
 
     private ViagemCustoAdicionalDao custoAdicionalDao;
@@ -73,6 +74,7 @@ public class ViagemDao extends BaseDao {
             if (model.possuiHospedagem()) {
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_CUSTO_MEDIO_NOITE, model.getHospedagemCustoMedioNoite());
                 values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_NOITES, model.getHospedagemTotalNoites());
+                values.put(ViagemModel.COLUNA_HOSPEDAGEM_TOTAL_QUARTOS, model.getHospedagemTotalQuartos());
             }
 
             rowId = db.insert(ViagemModel.TABELA_NOME, null, values);
@@ -213,6 +215,7 @@ public class ViagemDao extends BaseDao {
 
             model.setHospedagemCustoMedioNoite(c.getFloat(14));
             model.setHospedagemTotalNoites(c.getInt(15));
+            model.setHospedagemTotalQuartos(c.getInt(16));
 
             lista.add(model);
 
@@ -274,6 +277,7 @@ public class ViagemDao extends BaseDao {
 
         model.setHospedagemCustoMedioNoite(c.getFloat(14));
         model.setHospedagemTotalNoites(c.getInt(15));
+        model.setHospedagemTotalQuartos(c.getInt(16));
 
         c.close();
 

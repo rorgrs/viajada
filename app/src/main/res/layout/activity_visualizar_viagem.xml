@@ -257,7 +257,6 @@
                     android:hint="@string/custo_m_dio_por_noite_n_o_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
-
                 <TextView
                     android:id="@+id/total_noites"
                     android:layout_width="match_parent"
@@ -266,7 +265,6 @@
                     android:hint="@string/total_de_noites_n_o_informado"
                     android:textColor="@color/cinzae"
                     android:textSize="16sp" />
-
                 <TextView
                     android:id="@+id/total_quartos"
                     android:layout_width="match_parent"
