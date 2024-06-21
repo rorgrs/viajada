@@ -305,6 +305,17 @@
             android:layout_weight="1"
             android:background="@drawable/shape_botao"
             android:hint="@string/voltar" />
+
+        <Button
+            android:id="@+id/enviar"
+            android:layout_width="0dp"
+            android:textSize="22sp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/begeclaro"
+            android:layout_weight="1"
+            android:background="@drawable/shape_botao"
+            android:hint="ENVIAR" />
         
         <Button
             android:id="@+id/editar"

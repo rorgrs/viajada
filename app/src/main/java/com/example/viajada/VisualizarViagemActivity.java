@@ -29,7 +29,7 @@ public class VisualizarViagemActivity extends AppCompatActivity {
     private LayoutHelper layoutHelper;
     private ViagemDao viagemDao;
     private ViagemModel viagem;
-    private Button btnVoltar, btnEditar;
+    private Button btnVoltar, btnEditar, btnEnviar;
     private TextView principalOrigem, principalDestino, principalDuracao, principalNumViajantes, principalValorTotalViagem;
     private TextView combustivelTotalKm, combustivelMediaLitro, combustivelCustoLitro, combustivelTotalVeiculos, combustivelValorTotal;
     private TextView tarifaAereaCustoPessoa, tarifaAereaAluguelVeiculo, tarifaAereaValorTotal;
@@ -53,6 +53,7 @@ public class VisualizarViagemActivity extends AppCompatActivity {
 
         btnVoltar = findViewById(R.id.voltar);
         btnEditar = findViewById(R.id.editar);
+        btnEnviar = findViewById(R.id.enviar);
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,13 @@ public class VisualizarViagemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Editar();
+            }
+        });
+
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Enviar();
             }
         });
 
@@ -245,5 +253,9 @@ public class VisualizarViagemActivity extends AppCompatActivity {
 
         Intent intent = new Intent(VisualizarViagemActivity.this, PrincipalActivity.class);
         startActivity(intent);
+    }
+
+    private void Enviar(){
+        //AQUI TEM QUE FAZER A LÓGICA PARA ENVIAR AS INFORMAÇÕES PARA O BANCO DE DADOS
     }
 }
