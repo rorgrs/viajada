@@ -1,18 +1,10 @@
-package com.example.viajada.api.response;
+package com.example.viajada.api.dto;
 
-public class TB_VIAGEM_CUSTO_ENTRETENIMENTO {
-    private Long id;
+public class GenialSaudeViagemCustoEntretenimento {
     private Long viagemId;
+    private Long idConta = 7L;
     private String entretenimento;
     private double valor;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getViagemId() {
         return viagemId;
@@ -20,6 +12,14 @@ public class TB_VIAGEM_CUSTO_ENTRETENIMENTO {
 
     public void setViagemId(Long viagemId) {
         this.viagemId = viagemId;
+    }
+
+    public Long getIdConta() {
+        return idConta;
+    }
+
+    public void setIdConta(Long idConta) {
+        this.idConta = idConta;
     }
 
     public String getEntretenimento() {

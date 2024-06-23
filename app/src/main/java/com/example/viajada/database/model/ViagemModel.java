@@ -70,14 +70,13 @@ public class ViagemModel {
     private List<ViagemCustoAdicionalModel> custosAdicionais;
 
     public boolean possuiPassagemAerea() {
-        return tarifaAereaCustoPessoa != null && tarifaAereaCustoAluguelVeiculo != null
-                && tarifaAereaCustoPessoa != 0 && tarifaAereaCustoAluguelVeiculo != 0;
+        return tarifaAereaCustoPessoa != null && tarifaAereaCustoAluguelVeiculo != null &&
+                (tarifaAereaCustoPessoa != 0 || tarifaAereaCustoAluguelVeiculo != 0);
     }
 
     public boolean possuiHospedagem() {
-        return hospedagemCustoMedioNoite != null && hospedagemTotalQuartos != null && hospedagemTotalNoites != null
-                && hospedagemCustoMedioNoite != 0 && hospedagemTotalQuartos != 0 && hospedagemTotalNoites != 0;
-
+        return hospedagemCustoMedioNoite != null && hospedagemTotalQuartos != null && hospedagemTotalNoites != null &&
+                (hospedagemCustoMedioNoite != 0 || hospedagemTotalQuartos != 0 || hospedagemTotalNoites != 0);
     }
 
     public float getCustoTotal() {

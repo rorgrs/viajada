@@ -1,7 +1,8 @@
-package com.example.viajada.api.response;
+package com.example.viajada.api.dto;
 
-public class TB_VIAGEM_CUSTO_AEREO {
+public class GenialSaudeViagemCustoAereo {
     private Long viagemId;
+    private Long idConta = 7L;
     private double custoPessoa;
     private double custoAluguelVeiculo;
 
@@ -11,6 +12,14 @@ public class TB_VIAGEM_CUSTO_AEREO {
 
     public void setViagemId(Long viagemId) {
         this.viagemId = viagemId;
+    }
+
+    public Long getIdConta() {
+        return idConta;
+    }
+
+    public void setIdConta(Long idConta) {
+        this.idConta = idConta;
     }
 
     public double getCustoPessoa() {

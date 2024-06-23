@@ -1,10 +1,8 @@
-package com.example.viajada.api.response;
-
-import com.google.gson.annotations.SerializedName;
+package com.example.viajada.api.dto;
 
 import java.io.Serializable;
 
-public class Resposta implements Serializable {
+public class GenialSaudeResponse implements Serializable {
 
     private boolean Sucesso;
     private String Mensagem;

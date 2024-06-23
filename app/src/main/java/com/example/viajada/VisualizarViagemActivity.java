@@ -13,15 +13,28 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.viajada.api.GenialSaudeApiClient;
+import com.example.viajada.api.dto.GenialSaudeResponse;
+import com.example.viajada.api.dto.GenialSaudeViagem;
+import com.example.viajada.api.dto.GenialSaudeViagemCustoAereo;
+import com.example.viajada.api.dto.GenialSaudeViagemCustoEntretenimento;
+import com.example.viajada.api.dto.GenialSaudeViagemCustoGasolina;
+import com.example.viajada.api.dto.GenialSaudeViagemCustoHospedagem;
+import com.example.viajada.api.dto.GenialSaudeViagemCustoRefeicao;
 import com.example.viajada.database.dao.ViagemCustoAdicionalDao;
 import com.example.viajada.database.dao.ViagemDao;
 import com.example.viajada.database.model.ViagemCustoAdicionalModel;
 import com.example.viajada.database.model.ViagemModel;
+import com.example.viajada.helper.AlertHelper;
 import com.example.viajada.helper.LayoutHelper;
 import com.example.viajada.helper.SharedHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VisualizarViagemActivity extends AppCompatActivity {
 
@@ -35,8 +48,8 @@ public class VisualizarViagemActivity extends AppCompatActivity {
     private TextView tarifaAereaCustoPessoa, tarifaAereaAluguelVeiculo, tarifaAereaValorTotal;
     private TextView refeicaoCustoPessoa, refeicaoNumPorDia, refeicaoValorTotal;
     private TextView hospedagemCustoNoite, hospedagemNumNoites, hospedagemNumQuartos, hospedagemValorTotal;
-
     private LinearLayout listagem;
+    private AlertHelper alertHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +59,7 @@ public class VisualizarViagemActivity extends AppCompatActivity {
         layoutHelper = new LayoutHelper(VisualizarViagemActivity.this);
         sharedHelper = new SharedHelper(VisualizarViagemActivity.this);
         viagemDao = new ViagemDao(VisualizarViagemActivity.this);
+        alertHelper = new AlertHelper(VisualizarViagemActivity.this);
 
         long viagemId = sharedHelper.GetLong(SharedHelper.ViagemId);
 
@@ -255,7 +269,74 @@ public class VisualizarViagemActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void Enviar(){
-        //AQUI TEM QUE FAZER A LÓGICA PARA ENVIAR AS INFORMAÇÕES PARA O BANCO DE DADOS
+    private void Enviar() {
+        GenialSaudeViagem gsViagem = new GenialSaudeViagem();
+        gsViagem.setId(viagem.getId());
+        gsViagem.setTotalViajantes(viagem.getPrincipalNumViajantes());
+        gsViagem.setDuracaoViagem(viagem.getPrincipalDuracaoDias());
+        gsViagem.setCustoTotalViagem(viagem.getCustoTotal());
+        gsViagem.setCustoPorPessoa(viagem.getCustoTotal() / viagem.getPrincipalNumViajantes());
+        gsViagem.setLocal(viagem.getPrincipalOrigem() + " - " + viagem.getPrincipalDestino());
+
+        GenialSaudeViagemCustoRefeicao gsViagemRefeicao = new GenialSaudeViagemCustoRefeicao();
+        gsViagemRefeicao.setViagemId(viagem.getId());
+        gsViagemRefeicao.setCustoRefeicao(viagem.getRefeicaoCustoMedio());
+        gsViagemRefeicao.setRefeicoesDia(viagem.getRefeicaoPorDia());
+        gsViagem.setRefeicao(gsViagemRefeicao);
+
+        GenialSaudeViagemCustoGasolina gsViagemGasolina = new GenialSaudeViagemCustoGasolina();
+        gsViagemGasolina.setViagemId(viagem.getId());
+        gsViagemGasolina.setTotalEstimadoKM(viagem.getCombustivelDistanciaTotalKm());
+        gsViagemGasolina.setMediaKMLitro(viagem.getCombustivelMediaKmLitro());
+        gsViagemGasolina.setCustoMedioLitro(viagem.getCombustivelCustoMedioLitro());
+        gsViagemGasolina.setTotalVeiculos(viagem.getCombustivelNumVeiculos());
+        gsViagem.setGasolina(gsViagemGasolina);
+
+        if (viagem.possuiHospedagem()) {
+            GenialSaudeViagemCustoHospedagem gsViagemHospedagem = new GenialSaudeViagemCustoHospedagem();
+            gsViagemHospedagem.setViagemId(viagem.getId());
+            gsViagemHospedagem.setCustoMedioNoite(viagem.getHospedagemCustoMedioNoite());
+            gsViagemHospedagem.setTotalNoite(viagem.getHospedagemTotalNoites());
+            gsViagemHospedagem.setTotalQuartos(viagem.getHospedagemTotalQuartos());
+            gsViagem.setHospedagem(gsViagemHospedagem);
+        }
+
+        if (viagem.possuiPassagemAerea()) {
+            GenialSaudeViagemCustoAereo gsViagemAereo = new GenialSaudeViagemCustoAereo();
+            gsViagemAereo.setViagemId(viagem.getId());
+            gsViagemAereo.setCustoPessoa(viagem.getTarifaAereaCustoPessoa());
+            gsViagemAereo.setCustoAluguelVeiculo(viagem.getTarifaAereaCustoAluguelVeiculo());
+            gsViagem.setAereo(gsViagemAereo);
+        }
+
+        ArrayList<GenialSaudeViagemCustoEntretenimento> listaEntretenimento = new ArrayList<>();
+
+        for (ViagemCustoAdicionalModel custo : viagem.getCustosAdicionais()) {
+            GenialSaudeViagemCustoEntretenimento entretenimento = new GenialSaudeViagemCustoEntretenimento();
+            entretenimento.setViagemId(viagem.getId());
+            entretenimento.setEntretenimento(custo.getDescricao());
+            entretenimento.setValor(custo.getCusto());
+            listaEntretenimento.add(entretenimento);
+        }
+
+        GenialSaudeViagemCustoEntretenimento[] array = listaEntretenimento.toArray(new GenialSaudeViagemCustoEntretenimento[0]);
+
+        gsViagem.setListaEntretenimento(array);
+
+        GenialSaudeApiClient.postViagem(gsViagem, new Callback<GenialSaudeResponse>() {
+            @Override
+            public void onResponse(Call<GenialSaudeResponse> call, Response<GenialSaudeResponse> response) {
+                if (response.code() == 200) {
+                    alertHelper.CriarAlerta("Sucesso", "Viagem integrada com Genial Saúde");
+                } else {
+                    alertHelper.CriarAlerta("Erro", "Integração com Genial Saúde retornou erro com código " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GenialSaudeResponse> call, Throwable t) {
+                alertHelper.CriarAlerta("Erro", "Erro interno ao integrar viagem com Genial Saúde");
+            }
+        });
     }
 }
